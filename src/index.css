@@ -13,11 +13,11 @@ html, body {
   --bg: #faf9f7;
   --bg-2: #f3f1ed;
   --bg-3: #edeae4;
-  --text: #1a1a1a;
-  --text-mid: #3a3530;
-  --text-dim: #5a5550;
-  --text-mute: #7a7570;
-  --text-ghost: #aaa49e;
+  --text: #0a0a0a;
+  --text-mid: #1a1a1a;
+  --text-dim: #2a2a2a;
+  --text-mute: #444444;
+  --text-ghost: #666666;
   --border: #1a1a1a0d;
   --border-mid: #1a1a1a14;
   --accent: #1a3a2a;
@@ -54,7 +54,7 @@ h1, h2, h3, h4 { font-family: var(--serif); font-weight: 500; }
 .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
 .btn-full { width: 100%; text-align: center; }
 
-.section { padding: 8rem 10vw; }
+.section { padding: 5rem 10vw; }
 .section-inner { max-width: 1300px; margin: 0 auto; }
 
 .form-label { font-family: var(--sans); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-mute); display: block; margin-bottom: 0.6rem; }
@@ -81,7 +81,7 @@ h1, h2, h3, h4 { font-family: var(--serif); font-weight: 500; }
 @media (max-width: 768px) {
 
   /* SECTIONS */
-  .section { padding: 4rem 6vw !important; }
+.section { padding: 3rem 6vw !important; }
 
   /* NAV LOGO */
   nav img { height: 45px !important; }
