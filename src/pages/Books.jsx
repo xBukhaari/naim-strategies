@@ -17,7 +17,7 @@ const BOOK_DETAILS = [
     title: 'Business Geeks',
     year: '2025',
     color: '#1c2d1e',
-    cover: 'https://res.cloudinary.com/djxprptlf/image/upload/businessgeekcover.png',
+    cover: 'https://res.cloudinary.com/djxprptlf/image/upload/businessgeekcoverr.png',
     pages: '288',
     selarLink: 'https://selar.com/70w0736ar6',
     category: 'Strategic Thinking',

@@ -64,7 +64,7 @@ export const SERVICES = [
 
 export const BOOKS = [
   { title: "Facilitator's Edge", year: '2023', color: '#1a1a1a', cover: 'https://res.cloudinary.com/djxprptlf/image/upload/facilitatorsedgecover.png' },
-  { title: 'Business Geek', year: '2022', color: '#1c2d1e', cover: 'https://res.cloudinary.com/djxprptlf/image/upload/businessgeekcover.png' },
+  { title: 'Business Geek', year: '2022', color: '#1c2d1e', cover: 'https://res.cloudinary.com/djxprptlf/image/upload/businessgeekcoverr.png' },
 ];
 
 export const INSIGHTS = [
