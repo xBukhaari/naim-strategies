@@ -179,7 +179,7 @@ export const STATS = [
   { number: '500+', label: 'Leaders Empowered' },
   { number: '20+', label: 'Countries of Reach' },
   { number: '40+', label: 'Institutions Engaged' },
-  { number: '12 yrs', label: 'Of Continental Practice' },
+  { number: '12yrs', label: 'Of Continental Practice' },
 ];
 
 export const CREDENTIALS = [

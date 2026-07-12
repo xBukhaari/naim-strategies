@@ -212,12 +212,9 @@ useEffect(() => {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5rem', alignItems: 'center' }} className="two-col">
             <ScrollReveal direction="left">
           <div>
-            <div className="label">02 · The Founder</div>
+            <div className="label">The Founder</div>
               <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', fontWeight: 600, lineHeight: 1.1, marginBottom: '0.25rem' }}>
-                Meet Dr. Asma'u
-              </h2>
-              <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', fontWeight: 400, lineHeight: 1.1, color: 'var(--text-mid)' }}>
-                Isah Maibasira
+                Meet Dr. Asma'u Isah Maibasira
               </h2>
               <div style={{ width: 'rem', height: '2px', background: 'var(--gold)', margin: '2rem 0' }} />
               <p style={{ fontFamily: 'var(--sans)', fontSize: '13px', lineHeight: 1.9, color: 'var(--text-mute)', fontWeight: 300, marginBottom: '1.25rem' }}>
