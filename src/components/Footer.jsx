@@ -31,19 +31,20 @@ export default function Footer() {
           </div>
           <p style={{
             fontFamily: 'var(--sans)', fontSize: '11px', lineHeight: 1.9,
-            color: 'var(--text-mute)', fontWeight: 300, marginBottom: '1.5rem',
+            color: '#cccccc', fontWeight: 300, marginBottom: '1.5rem',
           }}>
+            NAIM Strategies Nigeria Limited
             NAIM Strategies Nigeria Ltd, a strategic leadership coaching and
             management consultancy building Africa's reference point for
             clarity-driven leadership.
           </p>
           <div style={{
-            fontFamily: 'var(--sans)', fontSize: '11px',
-            color: 'var(--text-mute)', lineHeight: 2,
+           fontFamily: 'var(--sans)', fontSize: '11px',
+           color: '#cccccc', lineHeight: 2,
           }}>
           contact@naimstrategies.com<br />
           +234 809 413 2576<br />
-          No.16D Annur Masjid Shopping Complex, Wuse, Abuja.
+          No. 16D Annur Masjid Shopping Complex, Wuse, Abuja.
           </div>
         </div>
 
@@ -55,7 +56,7 @@ export default function Footer() {
           }}>Explore</div>
           {NAV_LINKS.map(l => (
             <div key={l.label} onClick={() => scrollTo(l.href)} style={{
-              fontFamily: 'var(--sans)', fontSize: '11px', color: 'var(--text-mute)',
+              fontFamily: 'var(--sans)', fontSize: '11px', color: '#cccccc',
               marginBottom: '0.6rem', cursor: 'pointer', transition: 'color 0.3s',
             }}
               onMouseEnter={e => e.target.style.color = 'var(--gold)'}
@@ -73,7 +74,7 @@ export default function Footer() {
           {COUNTRIES.slice(0, 8).map(c => (
             <div key={c} style={{
               fontFamily: 'var(--sans)', fontSize: '11px',
-              color: 'var(--text-mute)', marginBottom: '0.5rem',
+              color: '#cccccc', marginBottom: '0.5rem',
             }}>{c}</div>
           ))}
           <div style={{
@@ -90,7 +91,7 @@ export default function Footer() {
           }}>Newsletter</div>
           <p style={{
             fontFamily: 'var(--sans)', fontSize: '11px', lineHeight: 1.8,
-            color: 'var(--text-mute)', fontWeight: 300, marginBottom: '1.5rem',
+            color: '#cccccc', fontWeight: 300, marginBottom: '1.5rem',
           }}>
             Quiet dispatches on clarity, strategy and leadership. No noise.
           </p>
@@ -119,14 +120,14 @@ export default function Footer() {
         margin: '0 auto',
       }}>
         <span style={{
-          fontFamily: 'var(--sans)', fontSize: '10px', color: 'var(--text-ghost)',
+        fontFamily: 'var(--sans)', fontSize: '10px', color: '#cccccc',   
         }}>
           © 2026 NAIM Strategies Nigeria Ltd. All rights reserved.
         </span>
         <div style={{ display: 'flex', gap: '2rem' }}>
           {['Privacy', 'Terms', 'Press'].map(l => (
             <span key={l} style={{
-              fontFamily: 'var(--sans)', fontSize: '10px', color: 'var(--text-mute)',
+              fontFamily: 'var(--sans)', fontSize: '10px', color: '#cccccc',
               cursor: 'pointer', transition: 'color 0.3s',
             }}
               onMouseEnter={e => e.target.style.color = 'var(--gold)'}
