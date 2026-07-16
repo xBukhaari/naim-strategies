@@ -23,17 +23,18 @@ export default function Footer() {
 
         {/* BRAND */}
         <div>
-          <div style={{
-            fontFamily: 'var(--sans)', fontSize: '12px', fontWeight: 600,
-            letterSpacing: '0.25em', textTransform: 'uppercase', marginBottom: '1.5rem',
+         <div style={{
+          fontFamily: 'var(--sans)', fontSize: '12px', fontWeight: 600,
+           letterSpacing: '0.25em', textTransform: 'uppercase', marginBottom: '1.5rem',
+           color: '#ffffff',
           }}>
-            NAIM <span className="gold">·</span> Strategies
-          </div>
+        NAIM <span className="gold">·</span> Strategies
+         </div>
           <p style={{
             fontFamily: 'var(--sans)', fontSize: '11px', lineHeight: 1.9,
             color: '#cccccc', fontWeight: 300, marginBottom: '1.5rem',
           }}>
-            NAIM Strategies Nigeria Limited
+          
             A strategic leadership coaching and
             management consultancy building Africa's reference point for
             clarity-driven leadership.
