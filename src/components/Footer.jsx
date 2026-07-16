@@ -34,7 +34,7 @@ export default function Footer() {
             color: '#cccccc', fontWeight: 300, marginBottom: '1.5rem',
           }}>
             NAIM Strategies Nigeria Limited
-            NAIM Strategies Nigeria Ltd, a strategic leadership coaching and
+            A strategic leadership coaching and
             management consultancy building Africa's reference point for
             clarity-driven leadership.
           </p>
