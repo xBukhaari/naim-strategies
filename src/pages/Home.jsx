@@ -623,7 +623,7 @@ useEffect(() => {
       <section className="section">
         <div className="section-inner">
           <div className="label">Impact</div>
-          <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', fontWeight: 600, lineHeight: 1.1, marginBottom: '4rem' }}>
+          <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3.0rem)', fontWeight: 600, lineHeight: 1.1, marginBottom: '4rem' }}>
             Measured in outcomes. Felt across institutions.
           </h2>
          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1px', background: 'var(--border)' }} className="stats-grid">
