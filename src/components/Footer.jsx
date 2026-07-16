@@ -43,9 +43,9 @@ export default function Footer() {
            fontFamily: 'var(--sans)', fontSize: '11px',
            color: '#cccccc', lineHeight: 2,
           }}>
-          contact@naimstrategies.com<br />
-          +234 809 413 2576<br />
-          No. 16D Annur Masjid Shopping Complex, Wuse, Abuja.
+          Email: contact@naimstrategies.com<br />
+          Phone Number: +234 809 413 2576<br />
+          Address: No. 16D Annur Masjid Shopping Complex, Wuse, Abuja.
           </div>
         </div>
 
