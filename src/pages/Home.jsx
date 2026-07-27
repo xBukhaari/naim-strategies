@@ -617,7 +617,6 @@ useEffect(() => {
 
       <div className="divider" />
 
-      {/* ── TESTIMONIALS ── */}
 
       {/* ── STATS ── */}
       <section className="section">
@@ -669,9 +668,43 @@ useEffect(() => {
         </div>
       </section>
 
-      
 
       <div className="divider" />
+
+<div className="divider" />
+
+<div className="divider" />
+
+      {/* ── QUOTES ── */}
+      <section className="section">
+        <div className="section-inner">
+          <div className="label">Words That Lead</div>
+          <div style={{
+            display: 'flex', gap: '2rem', overflowX: 'auto',
+            paddingBottom: '1rem', scrollSnapType: 'x mandatory',
+            scrollbarWidth: 'none',
+          }}>
+            {['quote1.jpg', 'quote2.jpg', 'quote3.jpg'].map((name, i) => (
+              <div key={i} style={{
+                flexShrink: 0, width: 'clamp(280px, 40vw, 420px)',
+                scrollSnapAlign: 'start',
+              }}>
+                <img
+                  src={`https://res.cloudinary.com/djxprptlf/image/upload/${name}.jpg`}
+                  alt={`Quote ${i + 1}`}
+                  style={{
+                    width: '100%', borderRadius: '8px',
+                    boxShadow: '0 8px 30px rgba(0,0,0,0.1)',
+                    display: 'block',
+                  }}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      <div className="divider" />
+
 
       {/* ── CONTACT ── */}
       <section className="section" id="contact">
