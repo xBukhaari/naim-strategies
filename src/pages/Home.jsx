@@ -669,6 +669,8 @@ useEffect(() => {
         </div>
       </section>
 
+      
+
       <div className="divider" />
 
       {/* ── CONTACT ── */}
