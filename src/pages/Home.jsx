@@ -684,7 +684,7 @@ useEffect(() => {
             paddingBottom: '1rem', scrollSnapType: 'x mandatory',
             scrollbarWidth: 'none',
           }}>
-            {['quote1.jpg', 'quote2.jpg', 'quote3.jpg'].map((name, i) => (
+            {['Quote1.png', 'Quote2.png', 'Quote3.png'].map((name, i) => (
               <div key={i} style={{
                 flexShrink: 0, width: 'clamp(280px, 40vw, 420px)',
                 scrollSnapAlign: 'start',
