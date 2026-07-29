@@ -1,5 +1,5 @@
 export default function WhatsApp() {
-  const phone = '2348094132576';
+  const phone = '447448225848';
   const message = 'Hello NAIM Strategies, I would like to enquire about your services.';
   const url = 'https://wa.me/' + phone + '?text=' + encodeURIComponent(message);
 
