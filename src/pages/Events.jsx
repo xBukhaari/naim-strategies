@@ -47,6 +47,19 @@ const PAST_EVENTS = [
 
 const UPCOMING = [
   {
+    month: 'AUG',
+    day: '05',
+    year: '2026',
+    title: 'A One Day Business Growth Workshop',
+    location: 'Abuja, Nigeria',
+    type: 'Workshop',
+    spots: 'Limited slots available',
+    desc: 'A practical workshop designed for women entrepreneurs who want to increase sales, build a powerful brand, and scale sustainably. Gain sales and marketing strategies, personal branding tools, business systems and a 90-day growth action plan.',
+    earlyBird: '50,000',
+    lateReg: '65,000',
+    registerLink: 'https://wa.me/2347448225848?text=I%20would%20like%20to%20register%20for%20the%20Business%20Growth%20Workshop',
+  },
+  {
     month: 'SEP',
     day: '18',
     year: '2026',
@@ -55,6 +68,7 @@ const UPCOMING = [
     type: 'Masterclass',
     spots: 'Limited to 20 participants',
     desc: 'A one-day intensive for senior executives seeking to sharpen their strategic thinking and decision-making frameworks.',
+    registerLink: '/contact',
   },
   {
     month: 'OCT',
@@ -65,6 +79,7 @@ const UPCOMING = [
     type: 'Convening',
     spots: 'By invitation only',
     desc: 'The flagship annual gathering of NAIM Strategies alumni, partners and the broader leadership community.',
+    registerLink: '/contact',
   },
   {
     month: 'NOV',
@@ -75,6 +90,7 @@ const UPCOMING = [
     type: 'Keynote',
     spots: 'Open registration',
     desc: "Dr. Asma'u will deliver a keynote address on African institutional leadership and global competitiveness.",
+    registerLink: '/contact',
   },
 ];
 
@@ -83,6 +99,7 @@ const TYPE_COLORS = {
   Keynote: '#1a2535',
   Masterclass: '#3d1f00',
   Panel: '#2d2040',
+  Workshop: '#1a3a2a',
 };
 
 export default function Events() {
@@ -100,7 +117,7 @@ export default function Events() {
             Where leaders gather to think clearly.
           </h1>
           <p style={{ fontFamily: 'var(--sans)', fontSize: '13px', lineHeight: 1.9, color: 'var(--text-mute)', maxWidth: '520px', fontWeight: 300 }}>
-            From intimate masterclasses to continental convenings  every NAIM event is designed as a space for rigorous thinking, honest dialogue and transformative connection.
+            From intimate masterclasses to continental convenings, every NAIM event is designed as a space for rigorous thinking, honest dialogue and transformative connection.
           </p>
         </div>
       </section>
@@ -132,18 +149,19 @@ export default function Events() {
             <div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1px', background: 'var(--border)', marginBottom: '4rem' }}>
                 {UPCOMING.map((e, i) => (
-                  <div key={i} style={{
-                    display: 'grid', gridTemplateColumns: '100px 1fr auto',
-                    gap: '3rem', alignItems: 'center', padding: '2.5rem',
-                    background: 'var(--bg-2)', transition: 'background 0.3s',
-                  }}
+                  <div key={i}
+                    className="event-row"
+                    style={{
+                      display: 'grid', gridTemplateColumns: '100px 1fr auto',
+                      gap: '3rem', alignItems: 'center', padding: '2.5rem',
+                      background: 'var(--bg-2)', transition: 'background 0.3s',
+                    }}
                     onMouseEnter={el => el.currentTarget.style.background = 'var(--bg-3)'}
                     onMouseLeave={el => el.currentTarget.style.background = 'var(--bg-2)'}
-                    className="event-row"
                   >
                     {/* DATE */}
                     <div style={{ textAlign: 'center' }}>
-                      <div style={{ fontFamily: 'var(--sans)', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase',  color: 'var(--accent)', marginBottom: '0.25rem' }}>{e.month}</div>
+                      <div style={{ fontFamily: 'var(--sans)', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: '0.25rem' }}>{e.month}</div>
                       <div style={{ fontFamily: 'var(--serif)', fontSize: '3rem', fontWeight: 400, lineHeight: 1, color: 'var(--text)' }}>{e.day}</div>
                       <div style={{ fontFamily: 'var(--sans)', fontSize: '10px', color: 'var(--text-mute)' }}>{e.year}</div>
                     </div>
@@ -154,25 +172,46 @@ export default function Events() {
                         <span style={{
                           fontFamily: 'var(--sans)', fontSize: '9px', letterSpacing: '0.15em',
                           textTransform: 'uppercase', padding: '4px 10px',
-                          background: TYPE_COLORS[e.type] || '#1a1a1a', color: 'var(--text-mid)',
+                          background: TYPE_COLORS[e.type] || '#1a1a1a', color: '#ffffff',
                         }}>{e.type}</span>
                         <span style={{ fontFamily: 'var(--sans)', fontSize: '10px', color: 'var(--text-mute)' }}>
                           {e.location}
                         </span>
                       </div>
                       <h3 style={{ fontSize: '1.5rem', fontWeight: 500, marginBottom: '0.5rem' }}>{e.title}</h3>
-                      <p style={{ fontFamily: 'var(--sans)', fontSize: '12px', lineHeight: 1.7, color: 'var(--text-mute)', fontWeight: 300, marginBottom: '0.5rem' }}>{e.desc}</p>
-                      <div style={{ fontFamily: 'var(--sans)', fontSize: '10px',  color: 'var(--accent)', letterSpacing: '0.05em' }}>
+                      <p style={{ fontFamily: 'var(--sans)', fontSize: '12px', lineHeight: 1.7, color: 'var(--text-mute)', fontWeight: 300, marginBottom: '0.75rem' }}>{e.desc}</p>
+
+                      {e.earlyBird && (
+                        <div style={{ display: 'flex', gap: '2rem', margin: '0.75rem 0', flexWrap: 'wrap' }}>
+                          <div>
+                            <div style={{ fontFamily: 'var(--sans)', fontSize: '9px', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--text-mute)', marginBottom: '2px' }}>Early Bird</div>
+                            <div style={{ fontFamily: 'var(--serif)', fontSize: '1.2rem', fontWeight: 600, color: 'var(--accent)' }}>&#8358;{e.earlyBird}</div>
+                          </div>
+                          <div>
+                            <div style={{ fontFamily: 'var(--sans)', fontSize: '9px', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--text-mute)', marginBottom: '2px' }}>Late Registration</div>
+                            <div style={{ fontFamily: 'var(--serif)', fontSize: '1.2rem', fontWeight: 600, color: 'var(--text-dim)' }}>&#8358;{e.lateReg}</div>
+                          </div>
+                        </div>
+                      )}
+
+                      <div style={{ fontFamily: 'var(--sans)', fontSize: '10px', color: 'var(--gold)', letterSpacing: '0.05em' }}>
                         {e.spots}
                       </div>
                     </div>
 
                     {/* CTA */}
                     <div style={{ flexShrink: 0 }}>
-                      <button className="btn btn-gold" style={{ fontSize: '9px', whiteSpace: 'nowrap' }}>
-                        Register →
-                      </button>
+                      <a
+                        className="btn btn-gold"
+                        style={{ fontSize: '9px', whiteSpace: 'nowrap' }}
+                        href={e.registerLink}
+                        target={e.registerLink.startsWith('http') ? '_blank' : '_self'}
+                        rel="noreferrer"
+                      >
+                        Register
+                      </a>
                     </div>
+
                   </div>
                 ))}
               </div>
@@ -189,7 +228,7 @@ export default function Events() {
                 <p style={{ fontFamily: 'var(--sans)', fontSize: '13px', lineHeight: 1.9, color: 'var(--text-mute)', maxWidth: '480px', margin: '0 auto 2rem', fontWeight: 300 }}>
                   NAIM Strategies delivers bespoke in-house masterclasses, retreats and strategy sessions for organisations and executive teams.
                 </p>
-                <button className="btn btn-gold">Request a Private Session →</button>
+                <a className="btn btn-gold" href="/contact">Request a Private Session</a>
               </div>
             </div>
           )}
@@ -206,12 +245,12 @@ export default function Events() {
                     <span style={{
                       fontFamily: 'var(--sans)', fontSize: '9px', letterSpacing: '0.15em',
                       textTransform: 'uppercase', padding: '4px 10px',
-                      background: TYPE_COLORS[e.type] || '#1a1a1a', color: 'var(--text-mid)',
+                      background: TYPE_COLORS[e.type] || '#1a1a1a', color: '#ffffff',
                     }}>{e.type}</span>
                     <span style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: 'var(--text-mute)' }}>{e.year}</span>
                   </div>
                   <h3 style={{ fontSize: '1.3rem', fontWeight: 500, lineHeight: 1.3, marginBottom: '0.5rem' }}>{e.title}</h3>
-                  <div style={{ fontFamily: 'var(--sans)', fontSize: '10px',  color: 'var(--accent)', letterSpacing: '0.05em', marginBottom: '1rem' }}>{e.location}</div>
+                  <div style={{ fontFamily: 'var(--sans)', fontSize: '10px', color: 'var(--accent)', letterSpacing: '0.05em', marginBottom: '1rem' }}>{e.location}</div>
                   <p style={{ fontFamily: 'var(--sans)', fontSize: '12px', lineHeight: 1.7, color: 'var(--text-mute)', fontWeight: 300 }}>{e.desc}</p>
                 </div>
               ))}

@@ -684,13 +684,13 @@ useEffect(() => {
             paddingBottom: '1rem', scrollSnapType: 'x mandatory',
             scrollbarWidth: 'none',
           }}>
-            {['Quote1.png', 'Quote2.png', 'Quote3.png'].map((name, i) => (
+            {['Quote1', 'Quote2', 'Quote3'].map((name, i) => (
               <div key={i} style={{
                 flexShrink: 0, width: 'clamp(280px, 40vw, 420px)',
                 scrollSnapAlign: 'start',
               }}>
                 <img
-                  src={`https://res.cloudinary.com/djxprptlf/image/upload/${name}.jpg`}
+                  src={`https://res.cloudinary.com/djxprptlf/image/upload/${name}.png`}
                   alt={`Quote ${i + 1}`}
                   style={{
                     width: '100%', borderRadius: '8px',
