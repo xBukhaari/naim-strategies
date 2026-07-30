@@ -234,7 +234,7 @@ export default function Insights() {
               fontSize: '13px',
               lineHeight: 1.9,
               color: 'var(--text-mute)',
-              maxWidth: '520px',
+              maxWidth: '960px',
               fontWeight: 300,
             }}
           >

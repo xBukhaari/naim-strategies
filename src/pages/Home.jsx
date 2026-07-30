@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import ScrollReveal from '../components/ScrollReveal';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   COUNTRIES, SERVICES, BOOKS, INSIGHTS,
   TESTIMONIALS, STATS, CREDENTIALS
@@ -384,35 +384,196 @@ useEffect(() => {
 
       <div className="divider" />
 
-      {/* ── INSIGHTS ── */}
-      <section className="section" id="insights">
-        <div className="section-inner">
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '4rem', flexWrap: 'wrap', gap: '1rem' }}>
-            <div>
-              <div className="label">Insights</div>
-              <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', fontWeight: 600 }}>Our Journal.</h2>
-            </div>
-            <button className="btn btn-outline">Read All Stories →</button>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2.5rem' }} className="insights-grid">
-            {INSIGHTS.map((ins, i) => (
-              <div key={i} style={{ borderTop: '1px solid var(--border)', paddingTop: '2rem', cursor: 'pointer' }}
-                onMouseEnter={e => e.currentTarget.querySelector('h3').style.color = 'var(--gold)'}
-                onMouseLeave={e => e.currentTarget.querySelector('h3').style.color = 'var(--text)'}
-              >
-                <div style={{ aspectRatio: '16/9', background: '#1a1206', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <span className="gold" style={{ fontSize: '1.5rem' }}>◇</span>
-                </div>
-                <div style={{ fontFamily: 'var(--sans)', fontSize: '10px', letterSpacing: '0.15em',  color: 'var(--accent)', marginBottom: '0.75rem' }}>{ins.date}</div>
-                <h3 style={{ fontSize: '1.25rem', fontWeight: 500, lineHeight: 1.3, marginBottom: '0.75rem', transition: 'color 0.3s' }}>{ins.title}</h3>
-                <p style={{ fontFamily: 'var(--sans)', fontSize: '12px', lineHeight: 1.8, color: 'var(--text-mute)', fontWeight: 300 }}>{ins.excerpt}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+{/* ── INSIGHTS ── */}
+<section className="section" id="insights">
+  <div className="section-inner">
 
-      <div className="divider" />
+    {/* HEADER */}
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'flex-end',
+        marginBottom: '4rem',
+        flexWrap: 'wrap',
+        gap: '1rem'
+      }}
+    >
+      <div>
+        <div className="label">Insights</div>
+
+        <h2
+          style={{
+            fontSize: 'clamp(2rem, 4vw, 3.5rem)',
+            fontWeight: 600
+          }}
+        >
+          Our Journal.
+        </h2>
+      </div>
+
+      <Link
+        to="/insights"
+        className="btn btn-outline"
+        style={{
+          textDecoration: 'none'
+        }}
+      >
+        Read All Stories →
+      </Link>
+    </div>
+
+    {/* ARTICLES */}
+    <div
+      className="insights-grid"
+      style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(3, 1fr)',
+        gap: '2.5rem'
+      }}
+    >
+      {[
+        {
+          date: 'July 15, 2026',
+          category: 'Women in Business',
+          title: 'The Untapped Architecture of Economic Transformation',
+          excerpt:
+            'Every economy that limits the participation of women in business effectively restricts its own productive capacity. The future belongs to economies capable of harnessing the full range of human talent available to them.',
+          readTime: '12 min read',
+          image:
+            'https://res.cloudinary.com/djxprptlf/image/upload/article1.jpg',
+          slug: 'untapped-architecture-economic-transformation'
+        },
+
+        {
+          date: 'July 10, 2026',
+          category: 'Women in Leadership',
+          title:
+            'Women and Leadership: The Leadership Paradox of the Twenty-First Century',
+          excerpt:
+            "Women have always led. What has changed is not the presence of women in leadership but society's willingness to recognize their leadership as such.",
+          readTime: '10 min read',
+          image:
+            'https://res.cloudinary.com/djxprptlf/image/upload/article2.jpg',
+          slug: 'women-leadership-paradox-twenty-first-century'
+        },
+
+        {
+          date: 'July 5, 2026',
+          category: 'Mental Health & Development',
+          title:
+            'The Invincible Infrastructure of Human Development',
+          excerpt:
+            'Beneath every thriving economy lies a form of infrastructure that rarely appears in national budgets or development indicators: the psychological well-being of its people.',
+          readTime: '11 min read',
+          image:
+            'https://res.cloudinary.com/djxprptlf/image/upload/article3.jpg',
+          slug: 'invincible-infrastructure-human-development'
+        }
+      ].map((ins) => (
+        <Link
+          key={ins.slug}
+          to={`/insights/${ins.slug}`}
+          style={{
+            textDecoration: 'none',
+            color: 'inherit',
+            display: 'block',
+            borderTop: '1px solid var(--border)',
+            paddingTop: '2rem',
+            cursor: 'pointer'
+          }}
+        >
+          {/* IMAGE */}
+          <div
+            style={{
+              aspectRatio: '16/9',
+              background: '#1a1206',
+              marginBottom: '1.5rem',
+              overflow: 'hidden'
+            }}
+          >
+            <img
+              src={ins.image}
+              alt={ins.title}
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                display: 'block',
+                transition: 'transform 0.5s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'scale(1.04)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'scale(1)';
+              }}
+            />
+          </div>
+
+          {/* DATE + CATEGORY */}
+          <div
+            style={{
+              fontFamily: 'var(--sans)',
+              fontSize: '10px',
+              letterSpacing: '0.15em',
+              color: 'var(--accent)',
+              marginBottom: '0.75rem'
+            }}
+          >
+            {ins.date} · {ins.category}
+          </div>
+
+          {/* TITLE */}
+          <h3
+            style={{
+              fontSize: '1.25rem',
+              fontWeight: 500,
+              lineHeight: 1.3,
+              marginBottom: '0.75rem',
+              transition: 'color 0.3s'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.color = 'var(--gold)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.color = 'var(--text)';
+            }}
+          >
+            {ins.title}
+          </h3>
+
+          {/* EXCERPT */}
+          <p
+            style={{
+              fontFamily: 'var(--sans)',
+              fontSize: '12px',
+              lineHeight: 1.8,
+              color: 'var(--text-mute)',
+              fontWeight: 300,
+              marginBottom: '1rem'
+            }}
+          >
+            {ins.excerpt}
+          </p>
+
+          {/* READ TIME */}
+          <div
+            style={{
+              fontFamily: 'var(--sans)',
+              fontSize: '10px',
+              color: 'var(--text-dim)'
+            }}
+          >
+            {ins.readTime}
+          </div>
+        </Link>
+      ))}
+    </div>
+  </div>
+</section>
+
+<div className="divider" />
 
 {/* GALLERY */}
 <section className="section" id="gallery">
@@ -506,7 +667,6 @@ useEffect(() => {
     </div>
   )}
 
-  {/* SINGLE PHOTO LIGHTBOX */}
 {/* SINGLE PHOTO LIGHTBOX */}
 {lightboxPhoto && (
   <div style={{
@@ -687,7 +847,7 @@ useEffect(() => {
             {['Quote1', 'Quote2', 'Quote3', 'Quote4'].map((name, i) => (
               <div key={i} style={{
                 flexShrink: 0, width: 'clamp(280px, 40vw, 420px)',
-                scrollSnapAlign: 'start',
+                scrollSnapAlign: 'start'
               }}>
                 <img
                   src={`https://res.cloudinary.com/djxprptlf/image/upload/${name}.png`}
@@ -759,6 +919,7 @@ useEffect(() => {
       </section>
 
       <style>{`
+      
         @media (max-width: 900px) {
           .two-col { grid-template-columns: 1fr !important; }
           .services-grid { grid-template-columns: 1fr !important; }
@@ -771,6 +932,7 @@ useEffect(() => {
           .gallery-grid { grid-template-columns: 1fr !important; }
           .stats-grid { grid-template-columns: 1fr 1fr !important; }
         }
+        
       `}</style>
     </main>
   );
