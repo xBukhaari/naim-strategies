@@ -10,7 +10,6 @@ import ScrollToTop from './components/ScrollToTop';
 import './index.css';
 import WhatsApp from './components/WhatsApp';
 import PageTransition from './components/PageTransition';
-import Contact from './pages/Contact';
 import Article from './pages/Article';
 
 export default function App() {
