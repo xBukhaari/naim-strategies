@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import ScrollReveal from '../components/ScrollReveal';
 import { Link, useNavigate } from 'react-router-dom';
 import {
-  COUNTRIES, SERVICES, BOOKS, INSIGHTS,
+  COUNTRIES, SERVICES, BOOKS,
   TESTIMONIALS, STATS, CREDENTIALS
 } from '../data/content';
 
