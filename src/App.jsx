@@ -16,20 +16,53 @@ import ForgotPassword from './auth/ForgotPassword';
 import ResetPassword from './auth/ResetPassword';
 import AuthCallback from './auth/AuthCallback';
 import ProtectedRoute from './auth/ProtectedRoute';
+import DashboardHome from './dashboard/DashboardHome';
+import DashboardEvents from './dashboard/DashboardEvents';
+import DashboardCertificates from './dashboard/DashboardCertificates';
+import DashboardProfile from './dashboard/DashboardProfile';
+import EventWorkspace from './dashboard/EventWorkspace';
 import './index.css';
 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* AUTH ROUTES - no nav/footer */}
+
+        {/* AUTH ROUTES */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/auth/callback" element={<AuthCallback />} />
 
-        {/* PUBLIC ROUTES - with nav/footer */}
+        {/* DASHBOARD ROUTES */}
+        <Route path="/dashboard" element={
+          <ProtectedRoute>
+            <DashboardHome />
+          </ProtectedRoute>
+        } />
+        <Route path="/dashboard/events" element={
+          <ProtectedRoute>
+            <DashboardEvents />
+          </ProtectedRoute>
+        } />
+        <Route path="/dashboard/events/:eventId" element={
+          <ProtectedRoute>
+            <EventWorkspace />
+          </ProtectedRoute>
+        } />
+        <Route path="/dashboard/certificates" element={
+          <ProtectedRoute>
+            <DashboardCertificates />
+          </ProtectedRoute>
+        } />
+        <Route path="/dashboard/profile" element={
+          <ProtectedRoute>
+            <DashboardProfile />
+          </ProtectedRoute>
+        } />
+
+        {/* PUBLIC ROUTES */}
         <Route path="*" element={
           <>
             <Nav />
@@ -48,6 +81,7 @@ export default function App() {
             <WhatsApp />
           </>
         } />
+
       </Routes>
     </BrowserRouter>
   );

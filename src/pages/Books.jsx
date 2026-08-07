@@ -70,10 +70,10 @@ const BOOK_DETAILS = [
         <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at 30% 50%, #1a120630 0%, transparent 65%)', pointerEvents: 'none' }} />
         <div style={{ maxWidth: '1300px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
           <div className="label">The Library</div>
-          <h1 style={{ fontSize: 'clamp(2.5rem, 6vw, 5rem)', fontWeight: 600, lineHeight: 1.05, maxWidth: '700px', marginBottom: '1.5rem' }}>
+          <h1 style={{ fontSize: 'clamp(2.5rem, 6vw, 5rem)', fontWeight: 600, lineHeight: 1.05, maxWidth: '1220px', marginBottom: '1.5rem' }}>
             A body of work built for leaders of consequence.
           </h1>
-          <p style={{ fontFamily: 'var(--sans)', fontSize: '13px', lineHeight: 1.9, color: 'var(--text-mute)', maxWidth: '520px', fontWeight: 300 }}>
+          <p style={{ fontFamily: 'var(--sans)', fontSize: '13px', lineHeight: 1.9, color: 'var(--text-mute)', maxWidth: '1220px', fontWeight: 300 }}>
             Each book is a distillation of years of practice, research and direct engagement with leaders and institutions across Africa and the world.
           </p>
         </div>
