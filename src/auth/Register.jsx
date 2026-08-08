@@ -1,11 +1,8 @@
-```jsx
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 
 export default function Register() {
-  const navigate = useNavigate();
-
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
@@ -21,39 +18,31 @@ export default function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     setError('');
 
-    if (
-      formData.password !==
-      formData.confirmPassword
-    ) {
+    if (formData.password !== formData.confirmPassword) {
       setError('Passwords do not match.');
       return;
     }
 
     if (formData.password.length < 8) {
-      setError(
-        'Password must be at least 8 characters.'
-      );
+      setError('Password must be at least 8 characters.');
       return;
     }
 
     setLoading(true);
 
-    const { error: signUpError } =
-      await supabase.auth.signUp({
-        email: formData.email,
-        password: formData.password,
-        options: {
-          data: {
-            full_name: formData.full_name,
-            phone: formData.phone,
-            organisation:
-              formData.organisation,
-          },
+    const { error: signUpError } = await supabase.auth.signUp({
+      email: formData.email,
+      password: formData.password,
+      options: {
+        data: {
+          full_name: formData.full_name,
+          phone: formData.phone,
+          organisation: formData.organisation,
         },
-      });
+      },
+    });
 
     setLoading(false);
 
@@ -114,20 +103,20 @@ export default function Register() {
             }}
           >
             We sent a verification link to{' '}
-            <strong>
-              {formData.email}
-            </strong>
-            . Click the link to activate
+            <strong>{formData.email}</strong>. Click the link to activate
             your account.
           </p>
 
-          <button
-            type="button"
-            onClick={() => navigate('/login')}
+          <Link
+            to="/login"
             className="btn btn-gold"
+            style={{
+              display: 'inline-block',
+              textDecoration: 'none',
+            }}
           >
             Go to Login →
-          </button>
+          </Link>
         </div>
       </main>
     );
@@ -157,7 +146,7 @@ export default function Register() {
             marginBottom: '3rem',
           }}
         >
-          <Link to="/">
+          <Link to="/" style={{ textDecoration: 'none' }}>
             <img
               src="https://res.cloudinary.com/djxprptlf/image/upload/logo.png"
               alt="NAIM Strategies"
@@ -186,8 +175,7 @@ export default function Register() {
               color: 'var(--text-mute)',
             }}
           >
-            Join the NAIM Strategies member
-            portal
+            Join the NAIM Strategies member portal
           </p>
         </div>
 
@@ -195,8 +183,7 @@ export default function Register() {
         <div
           style={{
             background: 'var(--bg-2)',
-            border:
-              '1px solid var(--border)',
+            border: '1px solid var(--border)',
             padding: '3rem',
           }}
         >
@@ -204,12 +191,10 @@ export default function Register() {
             <div
               style={{
                 background: '#fff0f0',
-                border:
-                  '1px solid #ffcccc',
+                border: '1px solid #ffcccc',
                 padding: '1rem',
                 marginBottom: '1.5rem',
-                fontFamily:
-                  'var(--sans)',
+                fontFamily: 'var(--sans)',
                 fontSize: '13px',
                 color: '#cc0000',
               }}
@@ -219,41 +204,28 @@ export default function Register() {
           )}
 
           <form onSubmit={handleSubmit}>
-            <div
-              style={{
-                marginBottom: '1.5rem',
-              }}
-            >
-              <label className="form-label">
-                Full Name *
-              </label>
+            {/* FULL NAME */}
+            <div style={{ marginBottom: '1.5rem' }}>
+              <label className="form-label">Full Name *</label>
 
               <input
                 className="form-input"
                 type="text"
                 placeholder="Your full name"
                 required
-                value={
-                  formData.full_name
-                }
+                value={formData.full_name}
                 onChange={(e) =>
                   setFormData({
                     ...formData,
-                    full_name:
-                      e.target.value,
+                    full_name: e.target.value,
                   })
                 }
               />
             </div>
 
-            <div
-              style={{
-                marginBottom: '1.5rem',
-              }}
-            >
-              <label className="form-label">
-                Email Address *
-              </label>
+            {/* EMAIL */}
+            <div style={{ marginBottom: '1.5rem' }}>
+              <label className="form-label">Email Address *</label>
 
               <input
                 className="form-input"
@@ -264,135 +236,106 @@ export default function Register() {
                 onChange={(e) =>
                   setFormData({
                     ...formData,
-                    email:
-                      e.target.value,
+                    email: e.target.value,
                   })
                 }
               />
             </div>
 
+            {/* PHONE + ORGANISATION */}
             <div
               style={{
                 display: 'grid',
-                gridTemplateColumns:
-                  '1fr 1fr',
+                gridTemplateColumns: '1fr 1fr',
                 gap: '1.5rem',
                 marginBottom: '1.5rem',
               }}
-              className="register-contact-grid"
+              className="register-two-column"
             >
               <div>
-                <label className="form-label">
-                  Phone
-                </label>
+                <label className="form-label">Phone</label>
 
                 <input
                   className="form-input"
                   type="tel"
                   placeholder="+234 800 000 0000"
-                  value={
-                    formData.phone
-                  }
+                  value={formData.phone}
                   onChange={(e) =>
                     setFormData({
                       ...formData,
-                      phone:
-                        e.target.value,
+                      phone: e.target.value,
                     })
                   }
                 />
               </div>
 
               <div>
-                <label className="form-label">
-                  Organisation
-                </label>
+                <label className="form-label">Organisation</label>
 
                 <input
                   className="form-input"
                   type="text"
                   placeholder="Your organisation"
-                  value={
-                    formData.organisation
-                  }
+                  value={formData.organisation}
                   onChange={(e) =>
                     setFormData({
                       ...formData,
-                      organisation:
-                        e.target.value,
+                      organisation: e.target.value,
                     })
                   }
                 />
               </div>
             </div>
 
-            <div
-              style={{
-                marginBottom: '1.5rem',
-              }}
-            >
-              <label className="form-label">
-                Password *
-              </label>
+            {/* PASSWORD */}
+            <div style={{ marginBottom: '1.5rem' }}>
+              <label className="form-label">Password *</label>
 
               <input
                 className="form-input"
                 type="password"
                 placeholder="Minimum 8 characters"
                 required
-                minLength={8}
-                value={
-                  formData.password
-                }
+                value={formData.password}
                 onChange={(e) =>
                   setFormData({
                     ...formData,
-                    password:
-                      e.target.value,
+                    password: e.target.value,
                   })
                 }
               />
             </div>
 
-            <div
-              style={{
-                marginBottom: '2rem',
-              }}
-            >
-              <label className="form-label">
-                Confirm Password *
-              </label>
+            {/* CONFIRM PASSWORD */}
+            <div style={{ marginBottom: '2rem' }}>
+              <label className="form-label">Confirm Password *</label>
 
               <input
                 className="form-input"
                 type="password"
                 placeholder="Repeat your password"
                 required
-                minLength={8}
-                value={
-                  formData.confirmPassword
-                }
+                value={formData.confirmPassword}
                 onChange={(e) =>
                   setFormData({
                     ...formData,
-                    confirmPassword:
-                      e.target.value,
+                    confirmPassword: e.target.value,
                   })
                 }
               />
             </div>
 
+            {/* SUBMIT */}
             <button
               type="submit"
               className="btn btn-gold btn-full"
               disabled={loading}
             >
-              {loading
-                ? 'Creating Account...'
-                : 'Create Account →'}
+              {loading ? 'Creating Account...' : 'Create Account →'}
             </button>
           </form>
 
+          {/* LOGIN LINK */}
           <p
             style={{
               fontFamily: 'var(--sans)',
@@ -416,14 +359,19 @@ export default function Register() {
         </div>
       </div>
 
+      {/* RESPONSIVE FORM */}
       <style>{`
         @media (max-width: 600px) {
-          .register-contact-grid {
+          .register-two-column {
             grid-template-columns: 1fr !important;
+            gap: 0 !important;
+          }
+
+          .register-two-column > div:first-child {
+            margin-bottom: 1.5rem;
           }
         }
       `}</style>
     </main>
   );
 }
-```
