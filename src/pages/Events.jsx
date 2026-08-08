@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { supabase } from '../lib/supabase';
 
 const PAST_EVENTS = [
   {
@@ -104,6 +106,78 @@ const TYPE_COLORS = {
 
 export default function Events() {
   const [activeTab, setActiveTab] = useState('upcoming');
+  const navigate = useNavigate();
+  const [user, setUser] = useState(null);
+  const [registering, setRegistering] = useState(null);
+  const [registered, setRegistered] = useState([]);
+  const [regSuccess, setRegSuccess] = useState('');
+  const [regError, setRegError] = useState('');
+
+  useEffect(() => {
+    const getUser = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      setUser(session?.user || null);
+
+      if (session?.user) {
+        const { data } = await supabase
+          .from('registrations')
+          .select('event_id')
+          .eq('user_id', session.user.id);
+        setRegistered(data?.map(r => r.event_id) || []);
+      }
+    };
+    getUser();
+  }, []);
+
+  const handleRegister = async (event) => {
+    if (!user) {
+      navigate('/login');
+      return;
+    }
+
+    if (event.registerLink.startsWith('http')) {
+      window.open(event.registerLink, '_blank');
+      return;
+    }
+
+    setRegistering(event.title);
+    setRegError('');
+
+    const { data: eventData } = await supabase
+      .from('events')
+      .select('id')
+      .eq('title', event.title)
+      .single();
+
+    if (!eventData) {
+      setRegError('Event not found in system. Please contact us directly.');
+      setRegistering(null);
+      return;
+    }
+
+    const { error } = await supabase
+      .from('registrations')
+      .insert({
+        event_id: eventData.id,
+        user_id: user.id,
+        status: 'pending',
+        payment_status: 'pending',
+      });
+
+    setRegistering(null);
+
+    if (error) {
+      if (error.code === '23505') {
+        setRegError('You have already registered for this event.');
+      } else {
+        setRegError('Something went wrong. Please try again.');
+      }
+    } else {
+      setRegistered([...registered, eventData.id]);
+      setRegSuccess(`Successfully registered for ${event.title}. Pending payment verification.`);
+      setTimeout(() => setRegSuccess(''), 6000);
+    }
+  };
 
   return (
     <main style={{ paddingTop: '6rem' }}>
@@ -201,15 +275,14 @@ export default function Events() {
 
                     {/* CTA */}
                     <div style={{ flexShrink: 0 }}>
-                      <a
+                      <button
                         className="btn btn-gold"
                         style={{ fontSize: '9px', whiteSpace: 'nowrap' }}
-                        href={e.registerLink}
-                        target={e.registerLink.startsWith('http') ? '_blank' : '_self'}
-                        rel="noreferrer"
+                        disabled={registering === e.title}
+                        onClick={() => handleRegister(e)}
                       >
-                        Register
-                      </a>
+                        {registering === e.title ? 'Registering...' : 'Register'}
+                      </button>
                     </div>
 
                   </div>
