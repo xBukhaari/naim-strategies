@@ -246,7 +246,8 @@ export default function AdminEvents() {
     );
   }
 
-  return (
+ return (
+  <AdminLayout>
     <div
       style={{
         padding: '3rem',
@@ -967,6 +968,7 @@ export default function AdminEvents() {
           }
         }
       `}</style>
-    </div>
-  );
+       </div>
+  </AdminLayout>
+);
 }
