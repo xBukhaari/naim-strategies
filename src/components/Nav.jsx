@@ -1,3 +1,4 @@
+import { supabase } from '../lib/supabase';
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 const LINKS = [
@@ -14,21 +15,25 @@ export default function Nav() {
 const [scrolled, setScrolled] = useState(false);
 const [hidden, setHidden] = useState(false);
 const [menuOpen, setMenuOpen] = useState(false);
+const [user, setUser] = useState(null);
   const location = useLocation();
 
   
 
 useEffect(() => {
-    let lastY = window.scrollY;
-    const onScroll = () => {
-      const currentY = window.scrollY;
-      setScrolled(currentY > 40);
-      setHidden(currentY > lastY && currentY > 100);
-      lastY = currentY;
-    };
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  const getUser = async () => {
+    const { data: { session } } = await supabase.auth.getSession();
+    setUser(session?.user || null);
+  };
+
+  getUser();
+
+  const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+    setUser(session?.user || null);
+  });
+
+  return () => listener.subscription.unsubscribe();
+}, []);
 
   const handleClick = (href) => {
     setMenuOpen(false);
@@ -146,6 +151,16 @@ useEffect(() => {
               >{l.label}</Link>
             )
           ))}
+        <Link to="/login" style={{
+            fontFamily: 'var(--sans)', fontSize: '10px', fontWeight: 500,
+            letterSpacing: '0.15em', textTransform: 'uppercase',
+            color: 'var(--text-mid)', transition: 'color 0.3s', textDecoration: 'none',
+          }}
+            onMouseEnter={e => e.target.style.color = 'var(--gold)'}
+            onMouseLeave={e => e.target.style.color = 'var(--text-mid)'}
+          >
+            Member Login
+          </Link>
           <Link to="/contact" className="btn btn-gold">
             Begin Conversation
           </Link>

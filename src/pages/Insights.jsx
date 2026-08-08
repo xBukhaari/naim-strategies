@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { supabase } from '../lib/supabase';
 
 const ARTICLES = [
   {
@@ -174,17 +175,67 @@ const CATEGORIES = [
 export default function Insights() {
   const [activeCategory, setActiveCategory] = useState('All');
 
+  const [newsEmail, setNewsEmail] = useState('');
+  const [newsStatus, setNewsStatus] = useState('');
+  const [newsSubmitting, setNewsSubmitting] = useState(false);
+
+  const handleNewsSubscribe = async (e) => {
+    e.preventDefault();
+
+    const email = newsEmail.trim().toLowerCase();
+
+    if (!email || newsSubmitting) {
+      return;
+    }
+
+    setNewsSubmitting(true);
+    setNewsStatus('');
+
+    try {
+      const { error } = await supabase
+        .from('newsletter_subscribers')
+        .insert([{ email }]);
+
+      if (error) {
+        if (error.code === '23505') {
+          setNewsStatus('already');
+        } else {
+          console.error('Newsletter subscription error:', error);
+          setNewsStatus('error');
+        }
+
+        return;
+      }
+
+      setNewsStatus('success');
+      setNewsEmail('');
+
+      window.setTimeout(() => {
+        setNewsStatus('');
+      }, 4000);
+    } catch (error) {
+      console.error('Newsletter subscription error:', error);
+      setNewsStatus('error');
+    } finally {
+      setNewsSubmitting(false);
+    }
+  };
+
   const filtered =
     activeCategory === 'All'
       ? ARTICLES
-      : ARTICLES.filter((article) => article.category === activeCategory);
+      : ARTICLES.filter(
+          (article) => article.category === activeCategory
+        );
 
-  const featured = ARTICLES.filter((article) => article.featured).slice(0, 3);
+  const featured = ARTICLES.filter(
+    (article) => article.featured
+  ).slice(0, 3);
 
   const rest =
     activeCategory === 'All'
       ? ARTICLES.filter((article) => !article.featured)
-      : filtered;
+      : filtered.filter((article) => !article.featured);
 
   return (
     <main style={{ paddingTop: '6rem' }}>
@@ -483,6 +534,7 @@ export default function Insights() {
             {CATEGORIES.map((category) => (
               <button
                 key={category}
+                type="button"
                 onClick={() => setActiveCategory(category)}
                 style={{
                   fontFamily: 'var(--sans)',
@@ -573,7 +625,6 @@ export default function Insights() {
                     fontWeight: 500,
                     lineHeight: 1.3,
                     marginBottom: '0.75rem',
-                    transition: 'color 0.3s',
                   }}
                 >
                   {article.title}
@@ -627,7 +678,10 @@ export default function Insights() {
               marginTop: '4rem',
             }}
           >
-            <button className="btn btn-outline">
+            <button
+              type="button"
+              className="btn btn-outline"
+            >
               Load More Stories
             </button>
           </div>
@@ -680,29 +734,85 @@ export default function Insights() {
             filler. Just thinking worth your time.
           </p>
 
-          <div
-            className="newsletter-row"
+          {/* NEWSLETTER FORM */}
+          <form
+            onSubmit={handleNewsSubscribe}
             style={{
-              display: 'flex',
-              gap: '1rem',
               maxWidth: '420px',
               margin: '0 auto',
             }}
           >
-            <input
-              className="form-input"
-              type="email"
-              placeholder="Your email address"
-              style={{ flex: 1 }}
-            />
-
-            <button
-              className="btn btn-gold"
-              style={{ flexShrink: 0 }}
+            <div
+              className="newsletter-row"
+              style={{
+                display: 'flex',
+                gap: '1rem',
+              }}
             >
-              Subscribe →
-            </button>
-          </div>
+              <input
+                className="form-input"
+                type="email"
+                placeholder="Your email address"
+                style={{ flex: 1 }}
+                required
+                value={newsEmail}
+                onChange={(e) => setNewsEmail(e.target.value)}
+                disabled={newsSubmitting}
+                aria-label="Email address"
+              />
+
+              <button
+                type="submit"
+                className="btn btn-gold"
+                style={{ flexShrink: 0 }}
+                disabled={newsSubmitting}
+              >
+                {newsSubmitting ? 'Subscribing...' : 'Subscribe →'}
+              </button>
+            </div>
+
+            {newsStatus === 'success' && (
+              <div
+                style={{
+                  fontFamily: 'var(--sans)',
+                  fontSize: '12px',
+                  color: '#2e7d32',
+                  marginTop: '0.75rem',
+                  textAlign: 'center',
+                }}
+              >
+                Subscribed successfully!
+              </div>
+            )}
+
+            {newsStatus === 'already' && (
+              <div
+                style={{
+                  fontFamily: 'var(--sans)',
+                  fontSize: '12px',
+                  color: 'var(--accent)',
+                  marginTop: '0.75rem',
+                  textAlign: 'center',
+                }}
+              >
+                You are already subscribed.
+              </div>
+            )}
+
+            {newsStatus === 'error' && (
+              <div
+                style={{
+                  fontFamily: 'var(--sans)',
+                  fontSize: '12px',
+                  color: '#cc0000',
+                  marginTop: '0.75rem',
+                  textAlign: 'center',
+                }}
+              >
+                Something went wrong. Try again.
+              </div>
+            )}
+          </form>
         </div>
       </section>
 
@@ -720,6 +830,12 @@ export default function Insights() {
           .newsletter-row {
             flex-direction: column !important;
           }
+
+          .newsletter-row .form-input,
+          .newsletter-row .btn {
+            width: 100%;
+            box-sizing: border-box;
+          }
         }
 
         @media (max-width: 560px) {
@@ -731,3 +847,4 @@ export default function Insights() {
     </main>
   );
 }
+

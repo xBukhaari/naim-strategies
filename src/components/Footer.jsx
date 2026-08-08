@@ -1,6 +1,33 @@
+import { supabase } from '../lib/supabase';
+import { useState } from 'react';
 import { NAV_LINKS, COUNTRIES } from '../data/content';
 
+
 export default function Footer() {
+  const [email, setEmail] = useState('');
+const [subStatus, setSubStatus] = useState('');
+
+const handleSubscribe = async (e) => {
+  e.preventDefault();
+  if (!email) return;
+
+  const { error } = await supabase
+    .from('newsletter_subscribers')
+    .insert({ email });
+
+  if (error) {
+    if (error.code === '23505') {
+      setSubStatus('already');
+    } else {
+      setSubStatus('error');
+    }
+  } else {
+    setSubStatus('success');
+    setEmail('');
+  }
+
+  setTimeout(() => setSubStatus(''), 4000);
+};
   const scrollTo = (href) => {
     const el = document.getElementById(href.replace('#', ''));
     if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -96,15 +123,35 @@ export default function Footer() {
           }}>
             Quiet dispatches on clarity, strategy and leadership. No noise.
           </p>
-          <input
-            className="form-input"
-            type="email"
-            placeholder="Your email address"
-            style={{ marginBottom: '1rem' }}
-          />
-          <button className="btn btn-gold btn-full" style={{ fontSize: '9px' }}>
-            Subscribe →
-          </button>
+              <form onSubmit={handleSubscribe}>
+                <input
+                  className="form-input"
+                  type="email"
+                  placeholder="Your email address"
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                  style={{ marginBottom: '1rem' }}
+                  required
+                />
+                {subStatus === 'success' && (
+                  <div style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: '#2e7d32', marginBottom: '0.75rem' }}>
+                    Subscribed successfully!
+                  </div>
+                )}
+                {subStatus === 'already' && (
+                  <div style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: 'var(--gold)', marginBottom: '0.75rem' }}>
+                    You are already subscribed.
+                  </div>
+                )}
+                {subStatus === 'error' && (
+                  <div style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: '#cc0000', marginBottom: '0.75rem' }}>
+                    Something went wrong. Try again.
+                  </div>
+                )}
+                <button type="submit" className="btn btn-gold btn-full" style={{ fontSize: '9px' }}>
+                  Subscribe →
+                </button>
+              </form>
         </div>
       </div>
 
