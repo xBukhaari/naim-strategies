@@ -155,3 +155,40 @@ img {
 .section {
   overflow-x: hidden;
 }
+
+/* ── ADMIN STYLES ── */
+.admin-card {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+}
+
+.admin-table-header {
+  background: #f9f9f9;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.admin-table-row {
+  background: #ffffff;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.admin-table-row:hover {
+  background: #f9f9f9;
+}
+
+.admin-input {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  color: #1a1a1a;
+  font-family: var(--sans);
+  font-size: 13px;
+  padding: 10px 14px;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.admin-input:focus {
+  border-color: var(--accent);
+}

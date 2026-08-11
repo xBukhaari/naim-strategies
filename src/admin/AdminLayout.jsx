@@ -43,12 +43,12 @@ export default function AdminLayout({ children }) {
   };
 
   return (
-    <div style={{ minHeight: '100vh', background: '#0f0f0f', display: 'flex', color: '#e8e0d0' }}>
+    <div style={{ minHeight: '100vh', background: '#0f0f0f', display: 'flex', color: '#1a1a1a' }}>
 
       {/* SIDEBAR */}
-      <aside style={{
+     <aside style={{
         width: '240px', flexShrink: 0,
-        background: '#0a0a0a', borderRight: '1px solid #ffffff0d',
+        background: '#1a3a2a', borderRight: '1px solid #ffffff0d',
         display: 'flex', flexDirection: 'column',
         position: 'fixed', top: 0, left: 0, bottom: 0, zIndex: 50,
       }}>
@@ -65,7 +65,7 @@ export default function AdminLayout({ children }) {
 
         {/* PROFILE */}
         <div style={{ padding: '1.25rem 1.5rem', borderBottom: '1px solid #ffffff0d' }}>
-          <div style={{ fontFamily: 'var(--sans)', fontSize: '12px', fontWeight: 600, color: '#e8e0d0', marginBottom: '0.2rem' }}>
+          <div style={{ fontFamily: 'var(--sans)', fontSize: '12px', fontWeight: 600, color: '#1a1a1a', marginBottom: '0.2rem' }}>
             {profile?.full_name || 'Admin'}
           </div>
           <div style={{ fontFamily: 'var(--sans)', fontSize: '10px', color: '#504840' }}>
@@ -117,7 +117,7 @@ export default function AdminLayout({ children }) {
       </aside>
 
       {/* MAIN */}
-      <main style={{ flex: 1, marginLeft: '240px', minHeight: '100vh' }}>
+      <main style={{ flex: 1, marginLeft: '240px', minHeight: '100vh', background: '#f5f5f5' }}>
         {children}
       </main>
     </div>

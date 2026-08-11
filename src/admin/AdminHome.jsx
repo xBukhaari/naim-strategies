@@ -82,10 +82,10 @@ export default function AdminHome() {
           <div style={{ fontFamily: 'var(--sans)', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#c9a96e', marginBottom: '0.5rem' }}>
             Admin Dashboard
           </div>
-          <h1 style={{ fontSize: '2rem', fontWeight: 600, color: '#e8e0d0', marginBottom: '0.5rem' }}>
+          <h1 style={{ fontSize: '2rem', fontWeight: 600, color: '#1a1a1a', marginBottom: '0.5rem' }}>
             Overview
           </h1>
-          <p style={{ fontFamily: 'var(--sans)', fontSize: '13px', color: '#504840' }}>
+          <p style={{ fontFamily: 'var(--sans)', fontSize: '13px', color: '#666666' }}>
             Welcome to the NAIM Strategies admin panel.
           </p>
         </div>
@@ -94,14 +94,14 @@ export default function AdminHome() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1px', background: '#ffffff08', marginBottom: '3rem' }} className="admin-stats">
           {statCards.map((s, i) => (
             <Link key={i} to={s.path} style={{ textDecoration: 'none' }}>
-              <div style={{ background: '#0a0a0a', padding: '2rem', transition: 'background 0.3s' }}
-                onMouseEnter={e => e.currentTarget.style.background = '#141414'}
-                onMouseLeave={e => e.currentTarget.style.background = '#0a0a0a'}
+              <div style={{ background: '#ffffff', padding: '2rem', transition: 'background 0.3s', border: '1px solid #e0e0e0' }}
+                onMouseEnter={e => e.currentTarget.style.background = '#f9f9f9'}
+                onMouseLeave={e => e.currentTarget.style.background = '#ffffff'}
               >
                 <div style={{ fontFamily: 'var(--sans)', fontSize: '2.5rem', fontWeight: 600, color: s.color, marginBottom: '0.5rem' }}>
                   {s.value}
                 </div>
-                <div style={{ fontFamily: 'var(--sans)', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#504840' }}>
+                <div style={{ fontFamily: 'var(--sans)', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#666666' }}>
                   {s.label}
                 </div>
               </div>
@@ -129,7 +129,7 @@ export default function AdminHome() {
         {/* RECENT REGISTRATIONS */}
         <div>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
-            <h2 style={{ fontSize: '1.2rem', fontWeight: 600, color: '#e8e0d0' }}>Recent Registrations</h2>
+            <h2 style={{ fontSize: '1.2rem', fontWeight: 600, color: '#1a1a1a' }}>Recent Registrations</h2>
             <Link to="/admin/registrations" style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: '#c9a96e', textDecoration: 'none' }}>
               View All →
             </Link>
@@ -142,16 +142,16 @@ export default function AdminHome() {
           ) : (
             <div style={{ background: '#ffffff08', display: 'flex', flexDirection: 'column', gap: '1px' }}>
               {/* TABLE HEADER */}
-              <div style={{ display: 'grid', gridTemplateColumns: '2fr 2fr 1fr 1fr', gap: '1rem', padding: '0.875rem 1.5rem', background: '#0a0a0a' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '2fr 2fr 1fr 1fr', gap: '1rem', padding: '0.875rem 1.5rem', background: '#f0f0f0', borderBottom: '1px solid #e0e0e0' }}>
                 {['Participant', 'Event', 'Status', 'Date'].map(h => (
                   <div key={h} style={{ fontFamily: 'var(--sans)', fontSize: '9px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#504840' }}>{h}</div>
                 ))}
               </div>
 
               {recentRegistrations.map((reg, i) => (
-                <div key={i} style={{ display: 'grid', gridTemplateColumns: '2fr 2fr 1fr 1fr', gap: '1rem', padding: '1rem 1.5rem', background: '#0f0f0f', alignItems: 'center' }}>
+                <div key={i} style={{ display: 'grid', gridTemplateColumns: '2fr 2fr 1fr 1fr', gap: '1rem', padding: '1rem 1.5rem', background: '#ffffff', alignItems: 'center', borderBottom: '1px solid #f0f0f0' }}>
                   <div>
-                    <div style={{ fontFamily: 'var(--sans)', fontSize: '12px', fontWeight: 500, color: '#e8e0d0', marginBottom: '0.2rem' }}>
+                    <div style={{ fontFamily: 'var(--sans)', fontSize: '12px', fontWeight: 500, color: '#1a1a1a', marginBottom: '0.2rem' }}>
                       {reg.profiles?.full_name}
                     </div>
                     <div style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: '#504840' }}>
@@ -182,7 +182,7 @@ export default function AdminHome() {
 
         {/* QUICK ACTIONS */}
         <div style={{ marginTop: '3rem' }}>
-          <h2 style={{ fontSize: '1.2rem', fontWeight: 600, color: '#e8e0d0', marginBottom: '1.5rem' }}>Quick Actions</h2>
+          <h2 style={{ fontSize: '1.2rem', fontWeight: 600, color: '#1a1a1a', marginBottom: '1.5rem' }}>Quick Actions</h2>
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
             {[
               { label: 'Create Event', path: '/admin/events/new' },

@@ -81,7 +81,7 @@ export default function AdminRegistrations() {
           <div style={{ fontFamily: 'var(--sans)', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#c9a96e', marginBottom: '0.5rem' }}>
             Admin
           </div>
-          <h1 style={{ fontSize: '2rem', fontWeight: 600, color: '#e8e0d0', marginBottom: '0.25rem' }}>Registrations</h1>
+          <h1 style={{ fontSize: '2rem', fontWeight: 600, color: '#1a1a1a', marginBottom: '0.25rem' }}>Registrations</h1>
           <p style={{ fontFamily: 'var(--sans)', fontSize: '13px', color: '#504840' }}>
             {registrations.filter(r => r.status === 'pending').length} pending approval
           </p>
@@ -92,7 +92,7 @@ export default function AdminRegistrations() {
           <input
             style={{
               background: '#0a0a0a', border: '1px solid #ffffff0d',
-              color: '#e8e0d0', fontFamily: 'var(--sans)', fontSize: '13px',
+              color: '#1a1a1a', fontFamily: 'var(--sans)', fontSize: '13px',
               padding: '12px 16px', width: '100%', maxWidth: '400px',
               outline: 'none', transition: 'border-color 0.3s',
             }}
@@ -146,7 +146,7 @@ export default function AdminRegistrations() {
                   onMouseLeave={e => e.currentTarget.style.background = '#0f0f0f'}
                 >
                   <div>
-                    <div style={{ fontFamily: 'var(--sans)', fontSize: '12px', fontWeight: 500, color: '#e8e0d0', marginBottom: '0.2rem' }}>
+                    <div style={{ fontFamily: 'var(--sans)', fontSize: '12px', fontWeight: 500, color: '#1a1a1a', marginBottom: '0.2rem' }}>
                       {reg.profiles?.full_name}
                     </div>
                     <div style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: '#504840' }}>

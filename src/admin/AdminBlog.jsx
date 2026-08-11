@@ -91,7 +91,7 @@ export default function AdminBlog() {
 
   const inputStyle = {
     background: '#0a0a0a', border: '1px solid #ffffff0d',
-    color: '#e8e0d0', fontFamily: 'var(--sans)', fontSize: '13px',
+    color: '#1a1a1a', fontFamily: 'var(--sans)', fontSize: '13px',
     padding: '10px 14px', width: '100%', outline: 'none',
   };
 
@@ -121,7 +121,7 @@ export default function AdminBlog() {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '3rem', flexWrap: 'wrap', gap: '1rem' }}>
           <div>
             <div style={{ fontFamily: 'var(--sans)', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#c9a96e', marginBottom: '0.5rem' }}>Admin</div>
-            <h1 style={{ fontSize: '2rem', fontWeight: 600, color: '#e8e0d0', marginBottom: '0.25rem' }}>Blog Posts</h1>
+            <h1 style={{ fontSize: '2rem', fontWeight: 600, color: '#1a1a1a', marginBottom: '0.25rem' }}>Blog Posts</h1>
             <p style={{ fontFamily: 'var(--sans)', fontSize: '13px', color: '#504840' }}>{posts.length} total posts</p>
           </div>
           <button onClick={() => { resetForm(); setShowForm(!showForm); }} style={{
@@ -137,7 +137,7 @@ export default function AdminBlog() {
         {/* FORM */}
         {showForm && (
           <form onSubmit={handleSubmit} style={{ background: '#0a0a0a', border: '1px solid #ffffff0d', padding: '2.5rem', marginBottom: '3rem' }}>
-            <h2 style={{ fontSize: '1.3rem', fontWeight: 600, color: '#e8e0d0', marginBottom: '2rem' }}>
+            <h2 style={{ fontSize: '1.3rem', fontWeight: 600, color: '#1a1a1a', marginBottom: '2rem' }}>
               {editing ? 'Edit Post' : 'New Blog Post'}
             </h2>
 
@@ -233,7 +233,7 @@ export default function AdminBlog() {
                 onMouseLeave={e => e.currentTarget.style.background = '#0f0f0f'}
               >
                 <div>
-                  <div style={{ fontFamily: 'var(--sans)', fontSize: '12px', fontWeight: 500, color: '#e8e0d0', marginBottom: '0.2rem' }}>
+                  <div style={{ fontFamily: 'var(--sans)', fontSize: '12px', fontWeight: 500, color: '#1a1a1a', marginBottom: '0.2rem' }}>
                     {post.title}
                   </div>
                   <div style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: '#504840' }}>

@@ -192,7 +192,7 @@ export default function AdminEvents() {
   const inputStyle = {
     background: '#0a0a0a',
     border: '1px solid #ffffff0d',
-    color: '#e8e0d0',
+    color: '#1a1a1a',
     fontFamily: 'var(--sans)',
     fontSize: '13px',
     padding: '10px 14px',
@@ -284,7 +284,7 @@ export default function AdminEvents() {
             style={{
               fontSize: '2rem',
               fontWeight: 600,
-              color: '#e8e0d0',
+              color: '#1a1a1a',
               marginBottom: '0.25rem',
             }}
           >
@@ -360,7 +360,7 @@ export default function AdminEvents() {
             style={{
               fontSize: '1.3rem',
               fontWeight: 600,
-              color: '#e8e0d0',
+              color: '#1a1a1a',
               marginBottom: '2rem',
             }}
           >
@@ -824,7 +824,7 @@ export default function AdminEvents() {
                     fontFamily: 'var(--sans)',
                     fontSize: '12px',
                     fontWeight: 500,
-                    color: '#e8e0d0',
+                    color: '#1a1a1a',
                     marginBottom: '0.2rem',
                   }}
                 >
