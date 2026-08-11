@@ -12,6 +12,7 @@ const NAV_ITEMS = [
   { label: 'Blog Posts', path: '/admin/blog', icon: '✦' },
   { label: 'Announcements', path: '/admin/announcements', icon: '✧' },
   { label: 'Newsletter', path: '/admin/newsletter', icon: '✉' },
+  { label: 'Contact Submissions', path: '/admin/contacts', icon: '✉' },
 ];
 
 export default function AdminLayout({ children }) {

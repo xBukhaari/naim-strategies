@@ -1,3 +1,4 @@
+import { supabase } from '../lib/supabase';
 import { useState, useEffect } from 'react';
 import ScrollReveal from '../components/ScrollReveal';
 import { Link, useNavigate } from 'react-router-dom';
@@ -110,15 +111,25 @@ useEffect(() => {
     if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const handleSubmit = async (e) => {
+const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('https://formspree.io/f/mlgkpblk', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-      if (response.ok) {
+      const [formspreeRes] = await Promise.all([
+        fetch('https://formspree.io/f/mlgkpblk', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData),
+        }),
+        supabase.from('contact_submissions').insert({
+          name: formData.name,
+          email: formData.email || '',
+          organisation: formData.org,
+          challenge: formData.challenge,
+          desired_outcome: formData.outcome,
+        }),
+      ]);
+
+      if (formspreeRes.ok) {
         setFormData({ name: '', org: '', challenge: '', outcome: '' });
         setSubmitted(true);
       } else {
@@ -128,6 +139,7 @@ useEffect(() => {
       alert('Something went wrong. Please try again.');
     }
   };
+  
   return (
     <main>
 

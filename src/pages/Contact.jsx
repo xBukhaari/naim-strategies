@@ -37,12 +37,23 @@ export default function Contact() {
 const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('https://formspree.io/f/mlgkpblk', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-      if (response.ok) {
+      const [formspreeRes] = await Promise.all([
+        fetch('https://formspree.io/f/mlgkpblk', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData),
+        }),
+        supabase.from('contact_submissions').insert({
+          name: formData.name,
+          email: formData.email,
+          organisation: formData.org,
+          enquiry_type: formData.enquiry,
+          challenge: formData.challenge,
+          desired_outcome: formData.outcome,
+        }),
+      ]);
+
+      if (formspreeRes.ok) {
         setSubmitted(true);
       } else {
         alert('Something went wrong. Please try again.');

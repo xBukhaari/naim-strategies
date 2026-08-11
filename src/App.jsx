@@ -31,6 +31,7 @@ import AdminResources from './admin/AdminResources';
 import AdminBlog from './admin/AdminBlog';
 import AdminAnnouncements from './admin/AdminAnnouncements';
 import AdminNewsletter from './admin/AdminNewsletter';
+import AdminContacts from './admin/AdminContacts';
 import './index.css';
 
 export default function App() {
@@ -65,7 +66,7 @@ export default function App() {
         <Route path="/admin/blog" element={<ProtectedRoute adminOnly><AdminBlog /></ProtectedRoute>} />
         <Route path="/admin/announcements" element={<ProtectedRoute adminOnly><AdminAnnouncements /></ProtectedRoute>} />
         <Route path="/admin/newsletter" element={<ProtectedRoute adminOnly><AdminNewsletter /></ProtectedRoute>} />
-
+        <Route path="/admin/contacts" element={<ProtectedRoute adminOnly><AdminContacts /></ProtectedRoute>} />
         {/* PUBLIC ROUTES */}
         <Route path="*" element={
           <>
