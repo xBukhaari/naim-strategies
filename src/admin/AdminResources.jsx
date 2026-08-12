@@ -207,17 +207,18 @@ export default function AdminResources() {
               Admin
             </div>
 
-            <h1
-              style={{
-                fontSize: '2rem',
-                fontWeight: 600,
-                color: '#0F2E23',
-                margin: '0 0 0.35rem',
-                lineHeight: 1.2,
-              }}
-            >
-              Resources
-            </h1>
+<h1
+  style={{
+    fontFamily: 'var(--sans)',
+    fontSize: '2rem',
+    fontWeight: 600,
+    color: '#0F2E23',
+    margin: '0 0 0.35rem',
+    lineHeight: 1.2,
+  }}
+>
+  Resources
+</h1>
 
             <p
               style={{
@@ -288,16 +289,17 @@ export default function AdminResources() {
                 marginBottom: '2rem',
               }}
             >
-              <h2
-                style={{
-                  fontSize: '1.3rem',
-                  fontWeight: 600,
-                  color: '#0F2E23',
-                  margin: '0 0 0.35rem',
-                }}
-              >
-                Add New Resource
-              </h2>
+<h2
+  style={{
+    fontFamily: 'var(--sans)',
+    fontSize: '1.3rem',
+    fontWeight: 600,
+    color: '#0F2E23',
+    margin: '0 0 0.35rem',
+  }}
+>
+  Add New Resource
+</h2>
 
               <p
                 style={{

@@ -171,7 +171,7 @@ export default function AdminUsers() {
             <h1
               style={{
                 margin: 0,
-                fontFamily: 'var(--serif)',
+                fontFamily: 'var(--sans)',
                 fontSize: 'clamp(2rem, 3vw, 2.5rem)',
                 lineHeight: 1.1,
                 fontWeight: 600,
