@@ -55,7 +55,7 @@ export default function AdminContacts() {
         {/* HEADER */}
         <div style={{ marginBottom: '3rem' }}>
           <div style={{ fontFamily: 'var(--sans)', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#c9a96e', marginBottom: '0.5rem' }}>Admin</div>
-          <h1 style={{ fontSize: '2rem', fontWeight: 600, color: '#1a1a1a', marginBottom: '0.25rem' }}>Contact Submissions</h1>
+          <h1 style={{ fontSize: '2rem', fontWeight: 600, color: '#f0f0f0', marginBottom: '0.25rem' }}>Contact Submissions</h1>
           <p style={{ fontFamily: 'var(--sans)', fontSize: '13px', color: '#504840' }}>
             {submissions.length} total submissions
           </p>
@@ -65,8 +65,8 @@ export default function AdminContacts() {
         <div style={{ marginBottom: '2rem' }}>
           <input
             style={{
-              background: '#0a0a0a', border: '1px solid #ffffff0d',
-              color: '#1a1a1a', fontFamily: 'var(--sans)', fontSize: '13px',
+              background: '#f9f9f9', border: '1px solid #e0e0e0',
+              color: '#f0f0f0', fontFamily: 'var(--sans)', fontSize: '13px',
               padding: '12px 16px', width: '100%', maxWidth: '400px', outline: 'none',
             }}
             placeholder="Search by name, email or organisation..."
@@ -80,27 +80,27 @@ export default function AdminContacts() {
         <div style={{ display: 'grid', gridTemplateColumns: selected ? '1fr 1fr' : '1fr', gap: '2rem' }} className="contact-grid">
 
           {/* LIST */}
-          <div style={{ background: '#ffffff08', display: 'flex', flexDirection: 'column', gap: '1px' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '2fr 2fr 1fr 1fr', gap: '1rem', padding: '0.875rem 1.5rem', background: '#0a0a0a' }}>
+          <div style={{ background: '#f5f5f5', display: 'flex', flexDirection: 'column', gap: '1px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '2fr 2fr 1fr 1fr', gap: '1rem', padding: '0.875rem 1.5rem', background: '#f9f9f9' }}>
               {['Name', 'Email', 'Date', 'Actions'].map(h => (
                 <div key={h} style={{ fontFamily: 'var(--sans)', fontSize: '9px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#504840' }}>{h}</div>
               ))}
             </div>
 
             {filtered.length === 0 ? (
-              <div style={{ background: '#0f0f0f', padding: '3rem', textAlign: 'center' }}>
+              <div style={{ background: '#ffffff', padding: '3rem', textAlign: 'center' }}>
                 <p style={{ fontFamily: 'var(--sans)', fontSize: '13px', color: '#504840' }}>No submissions yet.</p>
               </div>
             ) : (
               filtered.map((sub, i) => (
                 <div key={i}
-                  style={{ display: 'grid', gridTemplateColumns: '2fr 2fr 1fr 1fr', gap: '1rem', padding: '1rem 1.5rem', background: selected?.id === sub.id ? '#1a1a1a' : '#0f0f0f', alignItems: 'center', cursor: 'pointer', borderLeft: selected?.id === sub.id ? '2px solid #c9a96e' : '2px solid transparent' }}
-                  onMouseEnter={e => e.currentTarget.style.background = '#141414'}
-                  onMouseLeave={e => e.currentTarget.style.background = selected?.id === sub.id ? '#1a1a1a' : '#0f0f0f'}
+                  style={{ display: 'grid', gridTemplateColumns: '2fr 2fr 1fr 1fr', gap: '1rem', padding: '1rem 1.5rem', background: selected?.id === sub.id ? '#f0f0f0' : '#ffffff', alignItems: 'center', cursor: 'pointer', borderLeft: selected?.id === sub.id ? '2px solid #c9a96e' : '2px solid transparent' }}
+                  onMouseEnter={e => e.currentTarget.style.background = '#f0f0f0'}
+                  onMouseLeave={e => e.currentTarget.style.background = selected?.id === sub.id ? '#f0f0f0' : '#ffffff'}
                   onClick={() => setSelected(sub)}
                 >
                   <div>
-                    <div style={{ fontFamily: 'var(--sans)', fontSize: '12px', fontWeight: 500, color: '#1a1a1a', marginBottom: '0.2rem' }}>{sub.name}</div>
+                    <div style={{ fontFamily: 'var(--sans)', fontSize: '12px', fontWeight: 500, color: '#f0f0f0', marginBottom: '0.2rem' }}>{sub.name}</div>
                     {sub.organisation && <div style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: '#504840' }}>{sub.organisation}</div>}
                   </div>
                   <div style={{ fontFamily: 'var(--sans)', fontSize: '12px', color: '#a09080', wordBreak: 'break-all' }}>{sub.email}</div>
@@ -108,7 +108,7 @@ export default function AdminContacts() {
                   <button onClick={e => { e.stopPropagation(); handleDelete(sub.id); }} style={{
                     fontFamily: 'var(--sans)', fontSize: '9px', letterSpacing: '0.1em',
                     textTransform: 'uppercase', background: 'transparent',
-                    border: '1px solid #ffffff0d', color: '#ef9a9a',
+                    border: '1px solid #e0e0e0', color: '#ef9a9a',
                     padding: '4px 10px', cursor: 'pointer',
                   }}>Delete</button>
                 </div>
@@ -118,7 +118,7 @@ export default function AdminContacts() {
 
           {/* DETAIL VIEW */}
           {selected && (
-            <div style={{ background: '#0a0a0a', border: '1px solid #ffffff0d', padding: '2rem', position: 'sticky', top: '2rem', alignSelf: 'start' }}>
+            <div style={{ background: '#f9f9f9', border: '1px solid #e0e0e0', padding: '2rem', position: 'sticky', top: '2rem', alignSelf: 'start' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
                 <div style={{ fontFamily: 'var(--sans)', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#c9a96e' }}>
                   Submission Detail
@@ -137,7 +137,7 @@ export default function AdminContacts() {
                   <div style={{ fontFamily: 'var(--sans)', fontSize: '9px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#504840', marginBottom: '0.4rem' }}>
                     {item.label}
                   </div>
-                  <div style={{ fontFamily: 'var(--sans)', fontSize: '13px', color: '#1a1a1a' }}>{item.value}</div>
+                  <div style={{ fontFamily: 'var(--sans)', fontSize: '13px', color: '#f0f0f0' }}>{item.value}</div>
                 </div>
               ))}
 
@@ -158,7 +158,7 @@ export default function AdminContacts() {
               <a href={`mailto:${selected.email}?subject=Re: Your enquiry to NAIM Strategies`} style={{
                 display: 'block', fontFamily: 'var(--sans)', fontSize: '10px', fontWeight: 600,
                 letterSpacing: '0.15em', textTransform: 'uppercase', textAlign: 'center',
-                background: '#c9a96e', color: '#0a0a0a', padding: '12px 24px',
+                background: '#c9a96e', color: '#f9f9f9', padding: '12px 24px',
                 textDecoration: 'none', marginTop: '1rem',
               }}>
                 Reply via Email →

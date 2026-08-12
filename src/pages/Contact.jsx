@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { supabase } from '../lib/supabase';
+
 
 const OFFICES = [
   {

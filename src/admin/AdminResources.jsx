@@ -58,8 +58,8 @@ export default function AdminResources() {
   };
 
   const inputStyle = {
-    background: '#0a0a0a', border: '1px solid #ffffff0d',
-    color: '#1a1a1a', fontFamily: 'var(--sans)', fontSize: '13px',
+    background: '#f9f9f9', border: '1px solid #e0e0e0',
+    color: '#f0f0f0', fontFamily: 'var(--sans)', fontSize: '13px',
     padding: '10px 14px', width: '100%', outline: 'none',
   };
 
@@ -89,13 +89,13 @@ export default function AdminResources() {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '3rem', flexWrap: 'wrap', gap: '1rem' }}>
           <div>
             <div style={{ fontFamily: 'var(--sans)', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#c9a96e', marginBottom: '0.5rem' }}>Admin</div>
-            <h1 style={{ fontSize: '2rem', fontWeight: 600, color: '#1a1a1a', marginBottom: '0.25rem' }}>Resources</h1>
+            <h1 style={{ fontSize: '2rem', fontWeight: 600, color: '#f0f0f0', marginBottom: '0.25rem' }}>Resources</h1>
             <p style={{ fontFamily: 'var(--sans)', fontSize: '13px', color: '#504840' }}>{resources.length} resources uploaded</p>
           </div>
           <button onClick={() => setShowForm(!showForm)} style={{
             fontFamily: 'var(--sans)', fontSize: '10px', fontWeight: 600,
             letterSpacing: '0.15em', textTransform: 'uppercase',
-            background: '#c9a96e', border: 'none', color: '#0a0a0a',
+            background: '#c9a96e', border: 'none', color: '#f9f9f9',
             padding: '12px 24px', cursor: 'pointer',
           }}>
             {showForm ? 'Cancel' : '+ Add Resource'}
@@ -104,8 +104,8 @@ export default function AdminResources() {
 
         {/* FORM */}
         {showForm && (
-          <form onSubmit={handleSubmit} style={{ background: '#0a0a0a', border: '1px solid #ffffff0d', padding: '2.5rem', marginBottom: '3rem' }}>
-            <h2 style={{ fontSize: '1.3rem', fontWeight: 600, color: '#1a1a1a', marginBottom: '2rem' }}>Add New Resource</h2>
+          <form onSubmit={handleSubmit} style={{ background: '#f9f9f9', border: '1px solid #e0e0e0', padding: '2.5rem', marginBottom: '3rem' }}>
+            <h2 style={{ fontSize: '1.3rem', fontWeight: 600, color: '#f0f0f0', marginBottom: '2rem' }}>Add New Resource</h2>
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '1.5rem' }}>
               <div>
@@ -173,7 +173,7 @@ export default function AdminResources() {
             <button type="submit" disabled={saving} style={{
               fontFamily: 'var(--sans)', fontSize: '10px', fontWeight: 600,
               letterSpacing: '0.15em', textTransform: 'uppercase',
-              background: '#c9a96e', border: 'none', color: '#0a0a0a',
+              background: '#c9a96e', border: 'none', color: '#f9f9f9',
               padding: '12px 24px', cursor: 'pointer',
             }}>
               {saving ? 'Saving...' : 'Add Resource'}
@@ -182,25 +182,25 @@ export default function AdminResources() {
         )}
 
         {/* RESOURCES TABLE */}
-        <div style={{ background: '#ffffff08', display: 'flex', flexDirection: 'column', gap: '1px' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '2fr 2fr 1fr 1fr 1fr', gap: '1rem', padding: '0.875rem 1.5rem', background: '#0a0a0a' }}>
+        <div style={{ background: '#f5f5f5', display: 'flex', flexDirection: 'column', gap: '1px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '2fr 2fr 1fr 1fr 1fr', gap: '1rem', padding: '0.875rem 1.5rem', background: '#f9f9f9' }}>
             {['Title', 'Event', 'Type', 'Access', 'Actions'].map(h => (
               <div key={h} style={{ fontFamily: 'var(--sans)', fontSize: '9px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#504840' }}>{h}</div>
             ))}
           </div>
 
           {resources.length === 0 ? (
-            <div style={{ background: '#0f0f0f', padding: '3rem', textAlign: 'center' }}>
+            <div style={{ background: '#ffffff', padding: '3rem', textAlign: 'center' }}>
               <p style={{ fontFamily: 'var(--sans)', fontSize: '13px', color: '#504840' }}>No resources yet.</p>
             </div>
           ) : (
             resources.map((res, i) => (
-              <div key={i} style={{ display: 'grid', gridTemplateColumns: '2fr 2fr 1fr 1fr 1fr', gap: '1rem', padding: '1.25rem 1.5rem', background: '#0f0f0f', alignItems: 'center' }}
-                onMouseEnter={e => e.currentTarget.style.background = '#141414'}
-                onMouseLeave={e => e.currentTarget.style.background = '#0f0f0f'}
+              <div key={i} style={{ display: 'grid', gridTemplateColumns: '2fr 2fr 1fr 1fr 1fr', gap: '1rem', padding: '1.25rem 1.5rem', background: '#ffffff', alignItems: 'center' }}
+                onMouseEnter={e => e.currentTarget.style.background = '#f0f0f0'}
+                onMouseLeave={e => e.currentTarget.style.background = '#ffffff'}
               >
                 <div>
-                  <div style={{ fontFamily: 'var(--sans)', fontSize: '12px', fontWeight: 500, color: '#1a1a1a', marginBottom: '0.2rem' }}>
+                  <div style={{ fontFamily: 'var(--sans)', fontSize: '12px', fontWeight: 500, color: '#f0f0f0', marginBottom: '0.2rem' }}>
                     {res.title}
                   </div>
                   {res.description && (
@@ -223,14 +223,14 @@ export default function AdminResources() {
                     <a href={res.file_url || res.external_link} target="_blank" rel="noreferrer" style={{
                       fontFamily: 'var(--sans)', fontSize: '9px', letterSpacing: '0.1em',
                       textTransform: 'uppercase', background: 'transparent',
-                      border: '1px solid #ffffff0d', color: '#c9a96e',
+                      border: '1px solid #e0e0e0', color: '#c9a96e',
                       padding: '4px 10px', cursor: 'pointer', textDecoration: 'none',
                     }}>View</a>
                   )}
                   <button onClick={() => handleDelete(res.id)} style={{
                     fontFamily: 'var(--sans)', fontSize: '9px', letterSpacing: '0.1em',
                     textTransform: 'uppercase', background: 'transparent',
-                    border: '1px solid #ffffff0d', color: '#ef9a9a',
+                    border: '1px solid #e0e0e0', color: '#ef9a9a',
                     padding: '4px 10px', cursor: 'pointer',
                   }}>Delete</button>
                 </div>

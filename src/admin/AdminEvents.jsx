@@ -190,9 +190,9 @@ export default function AdminEvents() {
   };
 
   const inputStyle = {
-    background: '#0a0a0a',
-    border: '1px solid #ffffff0d',
-    color: '#1a1a1a',
+    background: '#f9f9f9',
+    border: '1px solid #e0e0e0',
+    color: '#f0f0f0',
     fontFamily: 'var(--sans)',
     fontSize: '13px',
     padding: '10px 14px',
@@ -218,7 +218,7 @@ export default function AdminEvents() {
           alignItems: 'center',
           justifyContent: 'center',
           minHeight: '100vh',
-          background: '#0a0a0a',
+          background: '#f9f9f9',
         }}
       >
         <div style={{ textAlign: 'center' }}>
@@ -251,7 +251,7 @@ export default function AdminEvents() {
     <div
       style={{
         padding: '3rem',
-        background: '#0a0a0a',
+        background: '#f9f9f9',
         minHeight: '100vh',
       }}
     >
@@ -284,7 +284,7 @@ export default function AdminEvents() {
             style={{
               fontSize: '2rem',
               fontWeight: 600,
-              color: '#1a1a1a',
+              color: '#f0f0f0',
               marginBottom: '0.25rem',
             }}
           >
@@ -318,7 +318,7 @@ export default function AdminEvents() {
             textTransform: 'uppercase',
             background: '#c9a96e',
             border: 'none',
-            color: '#0a0a0a',
+            color: '#f9f9f9',
             padding: '12px 24px',
             cursor: 'pointer',
           }}
@@ -350,8 +350,8 @@ export default function AdminEvents() {
         <form
           onSubmit={handleSubmit}
           style={{
-            background: '#0f0f0f',
-            border: '1px solid #ffffff0d',
+            background: '#ffffff',
+            border: '1px solid #e0e0e0',
             padding: '2.5rem',
             marginBottom: '3rem',
           }}
@@ -360,7 +360,7 @@ export default function AdminEvents() {
             style={{
               fontSize: '1.3rem',
               fontWeight: 600,
-              color: '#1a1a1a',
+              color: '#f0f0f0',
               marginBottom: '2rem',
             }}
           >
@@ -693,7 +693,7 @@ export default function AdminEvents() {
                 textTransform: 'uppercase',
                 background: '#c9a96e',
                 border: 'none',
-                color: '#0a0a0a',
+                color: '#f9f9f9',
                 padding: '12px 24px',
                 cursor: saving
                   ? 'not-allowed'
@@ -719,7 +719,7 @@ export default function AdminEvents() {
                 textTransform: 'uppercase',
                 background: 'transparent',
                 border:
-                  '1px solid #ffffff0d',
+                  '1px solid #e0e0e0',
                 color: '#504840',
                 padding: '12px 24px',
                 cursor: 'pointer',
@@ -734,7 +734,7 @@ export default function AdminEvents() {
       {/* EVENTS LIST */}
       <div
         style={{
-          background: '#ffffff08',
+          background: '#f5f5f5',
           display: 'flex',
           flexDirection: 'column',
           gap: '1px',
@@ -750,7 +750,7 @@ export default function AdminEvents() {
             gap: '1rem',
             padding:
               '0.875rem 1.5rem',
-            background: '#0a0a0a',
+            background: '#f9f9f9',
           }}
         >
           {[
@@ -778,7 +778,7 @@ export default function AdminEvents() {
         {events.length === 0 ? (
           <div
             style={{
-              background: '#0f0f0f',
+              background: '#ffffff',
               padding: '3rem',
               textAlign: 'center',
             }}
@@ -806,16 +806,16 @@ export default function AdminEvents() {
                 gap: '1rem',
                 padding:
                   '1.25rem 1.5rem',
-                background: '#0f0f0f',
+                background: '#ffffff',
                 alignItems: 'center',
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.background =
-                  '#141414';
+                  '#f0f0f0';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.background =
-                  '#0f0f0f';
+                  '#ffffff';
               }}
             >
               <div>
@@ -824,7 +824,7 @@ export default function AdminEvents() {
                     fontFamily: 'var(--sans)',
                     fontSize: '12px',
                     fontWeight: 500,
-                    color: '#1a1a1a',
+                    color: '#f0f0f0',
                     marginBottom: '0.2rem',
                   }}
                 >
@@ -919,7 +919,7 @@ export default function AdminEvents() {
                     background:
                       'transparent',
                     border:
-                      '1px solid #ffffff0d',
+                      '1px solid #e0e0e0',
                     color: '#c9a96e',
                     padding: '4px 10px',
                     cursor: 'pointer',
@@ -943,7 +943,7 @@ export default function AdminEvents() {
                     background:
                       'transparent',
                     border:
-                      '1px solid #ffffff0d',
+                      '1px solid #e0e0e0',
                     color: '#ef9a9a',
                     padding: '4px 10px',
                     cursor: 'pointer',

@@ -583,7 +583,7 @@ export default function Events() {
                                 background:
                                   TYPE_COLORS[
                                     event.event_type
-                                  ] || '#1a1a1a',
+                                  ] || '#f0f0f0',
                                 color: '#ffffff',
                               }}
                             >
@@ -876,7 +876,7 @@ export default function Events() {
                                 event.event_type ||
                                   event.type
                               ] ||
-                              '#1a1a1a',
+                              '#f0f0f0',
                             color: '#ffffff',
                           }}
                         >

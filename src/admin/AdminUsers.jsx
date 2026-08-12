@@ -64,7 +64,7 @@ export default function AdminUsers() {
             <div style={{ fontFamily: 'var(--sans)', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#c9a96e', marginBottom: '0.5rem' }}>
               Admin
             </div>
-            <h1 style={{ fontSize: '2rem', fontWeight: 600, color: '#1a1a1a', marginBottom: '0.25rem' }}>Users</h1>
+            <h1 style={{ fontSize: '2rem', fontWeight: 600, color: '#f0f0f0', marginBottom: '0.25rem' }}>Users</h1>
             <p style={{ fontFamily: 'var(--sans)', fontSize: '13px', color: '#504840' }}>
               {users.length} total members
             </p>
@@ -75,8 +75,8 @@ export default function AdminUsers() {
         <div style={{ marginBottom: '2rem' }}>
           <input
             style={{
-              background: '#0a0a0a', border: '1px solid #ffffff0d',
-              color: '#1a1a1a', fontFamily: 'var(--sans)', fontSize: '13px',
+              background: '#f9f9f9', border: '1px solid #e0e0e0',
+              color: '#f0f0f0', fontFamily: 'var(--sans)', fontSize: '13px',
               padding: '12px 16px', width: '100%', maxWidth: '400px',
               outline: 'none', transition: 'border-color 0.3s',
             }}
@@ -89,27 +89,27 @@ export default function AdminUsers() {
         </div>
 
         {/* TABLE */}
-        <div style={{ background: '#ffffff08', display: 'flex', flexDirection: 'column', gap: '1px' }}>
+        <div style={{ background: '#f5f5f5', display: 'flex', flexDirection: 'column', gap: '1px' }}>
 
           {/* HEADER ROW */}
-          <div style={{ display: 'grid', gridTemplateColumns: '2fr 2fr 1fr 1fr 1fr', gap: '1rem', padding: '0.875rem 1.5rem', background: '#0a0a0a' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '2fr 2fr 1fr 1fr 1fr', gap: '1rem', padding: '0.875rem 1.5rem', background: '#f9f9f9' }}>
             {['Name', 'Email', 'Organisation', 'Role', 'Joined'].map(h => (
               <div key={h} style={{ fontFamily: 'var(--sans)', fontSize: '9px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#504840' }}>{h}</div>
             ))}
           </div>
 
           {filtered.length === 0 ? (
-            <div style={{ background: '#0f0f0f', padding: '3rem', textAlign: 'center' }}>
+            <div style={{ background: '#ffffff', padding: '3rem', textAlign: 'center' }}>
               <p style={{ fontFamily: 'var(--sans)', fontSize: '13px', color: '#504840' }}>No users found.</p>
             </div>
           ) : (
             filtered.map((user, i) => (
-              <div key={i} style={{ display: 'grid', gridTemplateColumns: '2fr 2fr 1fr 1fr 1fr', gap: '1rem', padding: '1.25rem 1.5rem', background: '#0f0f0f', alignItems: 'center', transition: 'background 0.2s' }}
-                onMouseEnter={e => e.currentTarget.style.background = '#141414'}
-                onMouseLeave={e => e.currentTarget.style.background = '#0f0f0f'}
+              <div key={i} style={{ display: 'grid', gridTemplateColumns: '2fr 2fr 1fr 1fr 1fr', gap: '1rem', padding: '1.25rem 1.5rem', background: '#ffffff', alignItems: 'center', transition: 'background 0.2s' }}
+                onMouseEnter={e => e.currentTarget.style.background = '#f0f0f0'}
+                onMouseLeave={e => e.currentTarget.style.background = '#ffffff'}
               >
                 <div>
-                  <div style={{ fontFamily: 'var(--sans)', fontSize: '12px', fontWeight: 500, color: '#1a1a1a', marginBottom: '0.2rem' }}>
+                  <div style={{ fontFamily: 'var(--sans)', fontSize: '12px', fontWeight: 500, color: '#f0f0f0', marginBottom: '0.2rem' }}>
                     {user.full_name || 'No name'}
                   </div>
                   {user.phone && (
@@ -128,7 +128,7 @@ export default function AdminUsers() {
                     disabled={updating === user.id}
                     onChange={e => handleRoleChange(user.id, e.target.value)}
                     style={{
-                      background: '#1a1a1a', border: '1px solid #ffffff0d',
+                      background: '#f0f0f0', border: '1px solid #e0e0e0',
                       color: user.role === 'admin' ? '#c9a96e' : '#a09080',
                       fontFamily: 'var(--sans)', fontSize: '10px',
                       padding: '4px 8px', cursor: 'pointer', outline: 'none',

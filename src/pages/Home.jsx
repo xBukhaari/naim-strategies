@@ -139,7 +139,7 @@ const handleSubmit = async (e) => {
       alert('Something went wrong. Please try again.');
     }
   };
-  
+
   return (
     <main>
 
@@ -658,7 +658,7 @@ const handleSubmit = async (e) => {
         </div>
 
         {/* MODAL PHOTOS */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1px', background: '#ffffff08' }} className="modal-grid">
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1px', background: '#f5f5f5' }} className="modal-grid">
           {openCategory.photos.map((photo, i) => (
             <div key={i} style={{
               aspectRatio: '4/3', overflow: 'hidden', cursor: 'pointer',

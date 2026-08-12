@@ -56,7 +56,7 @@ export default function AdminRegistrations() {
     if (status === 'approved') return { bg: '#1b5e20', color: '#a5d6a7' };
     if (status === 'pending') return { bg: '#4a3000', color: '#ffcc80' };
     if (status === 'rejected') return { bg: '#4a0000', color: '#ef9a9a' };
-    return { bg: '#1a1a1a', color: '#a09080' };
+    return { bg: '#f0f0f0', color: '#a09080' };
   };
 
   if (loading) {
@@ -81,7 +81,7 @@ export default function AdminRegistrations() {
           <div style={{ fontFamily: 'var(--sans)', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#c9a96e', marginBottom: '0.5rem' }}>
             Admin
           </div>
-          <h1 style={{ fontSize: '2rem', fontWeight: 600, color: '#1a1a1a', marginBottom: '0.25rem' }}>Registrations</h1>
+          <h1 style={{ fontSize: '2rem', fontWeight: 600, color: '#f0f0f0', marginBottom: '0.25rem' }}>Registrations</h1>
           <p style={{ fontFamily: 'var(--sans)', fontSize: '13px', color: '#504840' }}>
             {registrations.filter(r => r.status === 'pending').length} pending approval
           </p>
@@ -91,8 +91,8 @@ export default function AdminRegistrations() {
         <div style={{ marginBottom: '2rem' }}>
           <input
             style={{
-              background: '#0a0a0a', border: '1px solid #ffffff0d',
-              color: '#1a1a1a', fontFamily: 'var(--sans)', fontSize: '13px',
+              background: '#f9f9f9', border: '1px solid #e0e0e0',
+              color: '#f0f0f0', fontFamily: 'var(--sans)', fontSize: '13px',
               padding: '12px 16px', width: '100%', maxWidth: '400px',
               outline: 'none', transition: 'border-color 0.3s',
             }}
@@ -105,7 +105,7 @@ export default function AdminRegistrations() {
         </div>
 
         {/* TABS */}
-        <div style={{ display: 'flex', gap: '0', marginBottom: '2rem', borderBottom: '1px solid #ffffff0d' }}>
+        <div style={{ display: 'flex', gap: '0', marginBottom: '2rem', borderBottom: '1px solid #e0e0e0' }}>
           {tabs.map(tab => (
             <button key={tab.value} onClick={() => setActiveTab(tab.value)} style={{
               fontFamily: 'var(--sans)', fontSize: '11px', fontWeight: 500,
@@ -117,7 +117,7 @@ export default function AdminRegistrations() {
             }}>
               {tab.label}
               {tab.value === 'pending' && registrations.filter(r => r.status === 'pending').length > 0 && (
-                <span style={{ marginLeft: '0.5rem', background: '#f57f17', color: '#0a0a0a', borderRadius: '10px', padding: '1px 6px', fontSize: '9px' }}>
+                <span style={{ marginLeft: '0.5rem', background: '#f57f17', color: '#f9f9f9', borderRadius: '10px', padding: '1px 6px', fontSize: '9px' }}>
                   {registrations.filter(r => r.status === 'pending').length}
                 </span>
               )}
@@ -126,27 +126,27 @@ export default function AdminRegistrations() {
         </div>
 
         {/* TABLE */}
-        <div style={{ background: '#ffffff08', display: 'flex', flexDirection: 'column', gap: '1px' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '2fr 2fr 1fr 1fr 1fr', gap: '1rem', padding: '0.875rem 1.5rem', background: '#0a0a0a' }}>
+        <div style={{ background: '#f5f5f5', display: 'flex', flexDirection: 'column', gap: '1px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '2fr 2fr 1fr 1fr 1fr', gap: '1rem', padding: '0.875rem 1.5rem', background: '#f9f9f9' }}>
             {['Participant', 'Event', 'Status', 'Registered', 'Actions'].map(h => (
               <div key={h} style={{ fontFamily: 'var(--sans)', fontSize: '9px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#504840' }}>{h}</div>
             ))}
           </div>
 
           {filtered.length === 0 ? (
-            <div style={{ background: '#0f0f0f', padding: '3rem', textAlign: 'center' }}>
+            <div style={{ background: '#ffffff', padding: '3rem', textAlign: 'center' }}>
               <p style={{ fontFamily: 'var(--sans)', fontSize: '13px', color: '#504840' }}>No registrations found.</p>
             </div>
           ) : (
             filtered.map((reg, i) => {
               const statusStyle = getStatusStyle(reg.status);
               return (
-                <div key={i} style={{ display: 'grid', gridTemplateColumns: '2fr 2fr 1fr 1fr 1fr', gap: '1rem', padding: '1.25rem 1.5rem', background: '#0f0f0f', alignItems: 'center' }}
-                  onMouseEnter={e => e.currentTarget.style.background = '#141414'}
-                  onMouseLeave={e => e.currentTarget.style.background = '#0f0f0f'}
+                <div key={i} style={{ display: 'grid', gridTemplateColumns: '2fr 2fr 1fr 1fr 1fr', gap: '1rem', padding: '1.25rem 1.5rem', background: '#ffffff', alignItems: 'center' }}
+                  onMouseEnter={e => e.currentTarget.style.background = '#f0f0f0'}
+                  onMouseLeave={e => e.currentTarget.style.background = '#ffffff'}
                 >
                   <div>
-                    <div style={{ fontFamily: 'var(--sans)', fontSize: '12px', fontWeight: 500, color: '#1a1a1a', marginBottom: '0.2rem' }}>
+                    <div style={{ fontFamily: 'var(--sans)', fontSize: '12px', fontWeight: 500, color: '#f0f0f0', marginBottom: '0.2rem' }}>
                       {reg.profiles?.full_name}
                     </div>
                     <div style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: '#504840' }}>

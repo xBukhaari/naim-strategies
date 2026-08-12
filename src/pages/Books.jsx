@@ -5,7 +5,7 @@ const BOOK_DETAILS = [
   {
     title: "Facilitator's Edge",
     year: '2026',
-    color: '#1a1a1a',
+    color: '#f0f0f0',
     cover: 'https://res.cloudinary.com/djxprptlf/image/upload/facilitatorsedgecover.png', 
     pages: '317',
     selarLink: 'https://selar.com/4v1t25s437',
