@@ -14,11 +14,24 @@ export default function AuthCallback() {
         return;
       }
 
-      const { data: profile } = await supabase
-        .from('profiles')
-        .select('role')
-        .eq('id', data.session.user.id)
-        .single();
+      // Retry profile fetch up to 5 times
+      let profile = null;
+      let attempts = 0;
+
+      while (!profile && attempts < 5) {
+        const { data: profileData } = await supabase
+          .from('profiles')
+          .select('role')
+          .eq('id', data.session.user.id)
+          .single();
+
+        if (profileData) {
+          profile = profileData;
+        } else {
+          attempts++;
+          await new Promise(r => setTimeout(r, 600));
+        }
+      }
 
       if (profile?.role === 'admin') {
         navigate('/admin');

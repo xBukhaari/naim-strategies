@@ -8,29 +8,62 @@ export default function ProtectedRoute({ children, adminOnly = false }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const getSession = async () => {
-      const { data } = await supabase.auth.getSession();
-      setSession(data.session);
+    let mounted = true;
 
-      if (data.session) {
-        const { data: profileData } = await supabase
-          .from('profiles')
-          .select('*')
-          .eq('id', data.session.user.id)
-          .single();
-        setProfile(profileData);
+    const getSessionAndProfile = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+
+      if (!mounted) return;
+
+      if (!session) {
+        setSession(null);
+        setLoading(false);
+        return;
       }
 
-      setLoading(false);
+      setSession(session);
+
+      // Retry up to 3 times in case profile isn't ready yet
+      let profile = null;
+      let attempts = 0;
+
+      while (!profile && attempts < 3) {
+        const { data } = await supabase
+          .from('profiles')
+          .select('*')
+          .eq('id', session.user.id)
+          .single();
+
+        if (data) {
+          profile = data;
+        } else {
+          attempts++;
+          await new Promise(r => setTimeout(r, 500));
+        }
+      }
+
+      if (mounted) {
+        setProfile(profile);
+        setLoading(false);
+      }
     };
 
-    getSession();
+    getSessionAndProfile();
 
     const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
+      if (mounted) {
+        setSession(session);
+        if (!session) {
+          setProfile(null);
+          setLoading(false);
+        }
+      }
     });
 
-    return () => listener.subscription.unsubscribe();
+    return () => {
+      mounted = false;
+      listener.subscription.unsubscribe();
+    };
   }, []);
 
   if (loading) {

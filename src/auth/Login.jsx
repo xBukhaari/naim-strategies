@@ -26,17 +26,29 @@ export default function Login() {
     if (error) {
       setError(error.message);
     } else {
-      const { data: profile } = await supabase
-        .from('profiles')
-        .select('role')
-        .eq('id', data.user.id)
-        .single();
+      let profile = null;
+let attempts = 0;
 
-      if (profile?.role === 'admin') {
-        navigate('/admin');
-      } else {
-        navigate('/dashboard');
-      }
+while (!profile && attempts < 5) {
+  const { data: profileData } = await supabase
+    .from('profiles')
+    .select('role')
+    .eq('id', data.user.id)
+    .single();
+
+  if (profileData) {
+    profile = profileData;
+  } else {
+    attempts++;
+    await new Promise(r => setTimeout(r, 500));
+  }
+}
+
+if (profile?.role === 'admin') {
+  navigate('/admin');
+} else {
+  navigate('/dashboard');
+}
     }
   };
 
