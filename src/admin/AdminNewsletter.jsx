@@ -24,6 +24,10 @@ export default function AdminNewsletter() {
     setLoading(false);
   };
 
+  /* =========================
+     TOGGLE SUBSCRIBER
+  ========================= */
+
   const handleToggle = async (id, currentStatus) => {
     const newStatus = !currentStatus;
 
@@ -43,6 +47,10 @@ export default function AdminNewsletter() {
     }
   };
 
+  /* =========================
+     DELETE SUBSCRIBER
+  ========================= */
+
   const handleDelete = async (id) => {
     if (!window.confirm('Remove this subscriber?')) return;
 
@@ -58,8 +66,14 @@ export default function AdminNewsletter() {
     }
   };
 
+  /* =========================
+     EXPORT CSV
+  ========================= */
+
   const handleExport = () => {
-    const active = subscribers.filter(sub => sub.is_active);
+    const active = subscribers.filter(
+      sub => sub.is_active
+    );
 
     const csv = [
       'Email,Subscribed Date,Status',
@@ -70,11 +84,17 @@ export default function AdminNewsletter() {
       ),
     ].join('\n');
 
-    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const blob = new Blob(
+      [csv],
+      { type: 'text/csv;charset=utf-8;' }
+    );
+
     const url = URL.createObjectURL(blob);
 
     const link = document.createElement('a');
+
     link.href = url;
+
     link.download = `naim-subscribers-${new Date()
       .toISOString()
       .slice(0, 10)}.csv`;
@@ -86,30 +106,61 @@ export default function AdminNewsletter() {
     URL.revokeObjectURL(url);
   };
 
+  /* =========================
+     FILTER
+  ========================= */
+
   const filtered = subscribers.filter(sub =>
-    sub.email?.toLowerCase().includes(search.toLowerCase())
+    sub.email
+      ?.toLowerCase()
+      .includes(search.toLowerCase())
   );
 
   const activeCount = subscribers.filter(
     sub => sub.is_active
   ).length;
 
-  const inactiveCount = subscribers.length - activeCount;
+  const inactiveCount =
+    subscribers.length - activeCount;
+
+  /* =========================
+     INPUT STYLE
+  ========================= */
 
   const inputStyle = {
     background: '#FFFFFF',
-    border: '1px solid #E5E7E5',
-    color: '#0F2E23',
+    border: '1px solid #DDE4DF',
+    color: '#17231E',
     fontFamily: 'var(--sans)',
     fontSize: '13px',
-    padding: '12px 16px',
+    padding: '11px 14px',
     width: '100%',
-    maxWidth: '400px',
+    maxWidth: '420px',
     outline: 'none',
-    transition: 'border-color 0.2s, box-shadow 0.2s',
-    borderRadius: '2px',
+    borderRadius: '3px',
     boxSizing: 'border-box',
+    transition:
+      'border-color 0.2s, box-shadow 0.2s',
   };
+
+  /* =========================
+     LABEL STYLE
+  ========================= */
+
+  const labelStyle = {
+    fontFamily: 'var(--sans)',
+    fontSize: '9px',
+    letterSpacing: '0.2em',
+    textTransform: 'uppercase',
+    color: '#53605A',
+    display: 'block',
+    marginBottom: '0.55rem',
+    fontWeight: 600,
+  };
+
+  /* =========================
+     LOADING
+  ========================= */
 
   if (loading) {
     return (
@@ -119,7 +170,7 @@ export default function AdminNewsletter() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            minHeight: '60vh',
+            minHeight: '70vh',
           }}
         >
           <div style={{ textAlign: 'center' }}>
@@ -137,7 +188,7 @@ export default function AdminNewsletter() {
               style={{
                 fontFamily: 'var(--sans)',
                 fontSize: '13px',
-                color: '#7A857F',
+                color: '#53605A',
                 margin: 0,
               }}
             >
@@ -151,20 +202,30 @@ export default function AdminNewsletter() {
 
   return (
     <AdminLayout>
-      <div style={{ padding: '2rem' }}>
+      <div
+        style={{
+          padding: '3rem',
+          maxWidth: '1500px',
+          margin: '0 auto',
+        }}
+      >
 
-        {/* HEADER */}
+        {/* =========================
+            HEADER
+        ========================= */}
+
         <div
           style={{
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'flex-start',
-            marginBottom: '2.5rem',
+            marginBottom: '3rem',
             flexWrap: 'wrap',
-            gap: '1rem',
+            gap: '1.5rem',
           }}
         >
           <div>
+
             <div
               style={{
                 fontFamily: 'var(--sans)',
@@ -172,7 +233,7 @@ export default function AdminNewsletter() {
                 letterSpacing: '0.2em',
                 textTransform: 'uppercase',
                 color: '#C8A95D',
-                marginBottom: '0.5rem',
+                marginBottom: '0.6rem',
                 fontWeight: 600,
               }}
             >
@@ -184,7 +245,7 @@ export default function AdminNewsletter() {
                 fontFamily: 'var(--sans)',
                 fontSize: '2rem',
                 fontWeight: 600,
-                color: '#0F2E23',
+                color: '#17231E',
                 margin: 0,
                 marginBottom: '0.4rem',
               }}
@@ -196,7 +257,7 @@ export default function AdminNewsletter() {
               style={{
                 fontFamily: 'var(--sans)',
                 fontSize: '13px',
-                color: '#7A857F',
+                color: '#53605A',
                 margin: 0,
               }}
             >
@@ -204,6 +265,8 @@ export default function AdminNewsletter() {
               {subscribers.length} total
             </p>
           </div>
+
+          {/* EXPORT BUTTON */}
 
           <button
             onClick={handleExport}
@@ -213,33 +276,56 @@ export default function AdminNewsletter() {
               fontWeight: 600,
               letterSpacing: '0.15em',
               textTransform: 'uppercase',
-              background: '#C8A95D',
-              border: 'none',
-              color: '#0F2E23',
+              background: '#0F2E23',
+              border: '1px solid #0F2E23',
+              color: '#FFFFFF',
               padding: '12px 24px',
               cursor: 'pointer',
-              borderRadius: '2px',
-              transition: 'all 0.2s',
+              borderRadius: '3px',
+              transition: 'all 0.25s ease',
             }}
             onMouseEnter={e => {
-              e.currentTarget.style.background = '#B5964C';
+              e.currentTarget.style.background =
+                '#C8A95D';
+
+              e.currentTarget.style.borderColor =
+                '#C8A95D';
+
+              e.currentTarget.style.color =
+                '#0F2E23';
             }}
             onMouseLeave={e => {
-              e.currentTarget.style.background = '#C8A95D';
+              e.currentTarget.style.background =
+                '#0F2E23';
+
+              e.currentTarget.style.borderColor =
+                '#0F2E23';
+
+              e.currentTarget.style.color =
+                '#FFFFFF';
             }}
           >
             Export CSV
           </button>
         </div>
 
-        {/* STATS */}
+        {/* =========================
+            STATS
+        ========================= */}
+
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
+            gridTemplateColumns:
+              'repeat(3, 1fr)',
             gap: '1px',
-            background: '#E5E7E5',
+            background: '#DDE4DF',
             marginBottom: '2.5rem',
+            border: '1px solid #DDE4DF',
+            borderRadius: '4px',
+            overflow: 'hidden',
+            boxShadow:
+              '0 6px 24px rgba(15, 46, 35, 0.04)',
           }}
         >
           {[
@@ -269,7 +355,7 @@ export default function AdminNewsletter() {
                   fontFamily: 'var(--sans)',
                   fontSize: '2rem',
                   fontWeight: 600,
-                  color: '#0F2E23',
+                  color: '#17231E',
                   marginBottom: '0.5rem',
                 }}
               >
@@ -282,7 +368,8 @@ export default function AdminNewsletter() {
                   fontSize: '9px',
                   letterSpacing: '0.15em',
                   textTransform: 'uppercase',
-                  color: '#7A857F',
+                  color: '#718078',
+                  fontWeight: 600,
                 }}
               >
                 {stat.label}
@@ -291,43 +378,71 @@ export default function AdminNewsletter() {
           ))}
         </div>
 
-        {/* SEARCH */}
-        <div style={{ marginBottom: '1.5rem' }}>
+        {/* =========================
+            SEARCH
+        ========================= */}
+
+        <div
+          style={{
+            marginBottom: '1.5rem',
+          }}
+        >
+          <label style={labelStyle}>
+            Search Subscribers
+          </label>
+
           <input
             style={inputStyle}
             placeholder="Search by email..."
             value={search}
-            onChange={e => setSearch(e.target.value)}
+            onChange={e =>
+              setSearch(e.target.value)
+            }
             onFocus={e => {
-              e.currentTarget.style.borderColor = '#C8A95D';
+              e.currentTarget.style.borderColor =
+                '#C8A95D';
+
               e.currentTarget.style.boxShadow =
-                '0 0 0 2px rgba(200, 169, 93, 0.12)';
+                '0 0 0 3px rgba(200,169,93,0.12)';
             }}
             onBlur={e => {
-              e.currentTarget.style.borderColor = '#E5E7E5';
-              e.currentTarget.style.boxShadow = 'none';
+              e.currentTarget.style.borderColor =
+                '#DDE4DF';
+
+              e.currentTarget.style.boxShadow =
+                'none';
             }}
           />
         </div>
 
-        {/* TABLE */}
+        {/* =========================
+            SUBSCRIBERS TABLE
+        ========================= */}
+
         <div
           style={{
-            background: '#E5E7E5',
+            background: '#DDE4DF',
             display: 'flex',
             flexDirection: 'column',
             gap: '1px',
+            border: '1px solid #DDE4DF',
+            borderRadius: '4px',
             overflowX: 'auto',
+            boxShadow:
+              '0 6px 24px rgba(15, 46, 35, 0.04)',
           }}
         >
+
           {/* TABLE HEADER */}
+
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: '3fr 1fr 1fr 1.5fr',
+              gridTemplateColumns:
+                '3fr 1fr 1.2fr 1.5fr',
               gap: '1rem',
-              padding: '0.875rem 1.5rem',
-              background: '#F8F9FA',
+              padding: '1rem 1.5rem',
+              background: '#0F2E23',
               minWidth: '700px',
             }}
           >
@@ -343,9 +458,9 @@ export default function AdminNewsletter() {
                   fontFamily: 'var(--sans)',
                   fontSize: '9px',
                   fontWeight: 600,
-                  letterSpacing: '0.15em',
+                  letterSpacing: '0.2em',
                   textTransform: 'uppercase',
-                  color: '#7A857F',
+                  color: '#EAD9A3',
                 }}
               >
                 {header}
@@ -353,20 +468,31 @@ export default function AdminNewsletter() {
             ))}
           </div>
 
-          {/* TABLE ROWS */}
+          {/* EMPTY STATE */}
+
           {filtered.length === 0 ? (
             <div
               style={{
                 background: '#FFFFFF',
-                padding: '3rem',
+                padding: '4rem 2rem',
                 textAlign: 'center',
               }}
             >
+              <div
+                style={{
+                  fontSize: '2rem',
+                  color: '#C8A95D',
+                  marginBottom: '0.75rem',
+                }}
+              >
+                ◇
+              </div>
+
               <p
                 style={{
                   fontFamily: 'var(--sans)',
                   fontSize: '13px',
-                  color: '#7A857F',
+                  color: '#53605A',
                   margin: 0,
                 }}
               >
@@ -374,39 +500,49 @@ export default function AdminNewsletter() {
               </p>
             </div>
           ) : (
+
+            /* SUBSCRIBER ROWS */
+
             filtered.map(subscriber => (
               <div
                 key={subscriber.id}
                 style={{
                   display: 'grid',
-                  gridTemplateColumns: '3fr 1fr 1fr 1.5fr',
+                  gridTemplateColumns:
+                    '3fr 1fr 1.2fr 1.5fr',
                   gap: '1rem',
-                  padding: '1rem 1.5rem',
+                  padding: '1.25rem 1.5rem',
                   background: '#FFFFFF',
                   alignItems: 'center',
                   minWidth: '700px',
-                  transition: 'background 0.2s',
+                  transition:
+                    'background 0.2s ease',
                 }}
                 onMouseEnter={e => {
-                  e.currentTarget.style.background = '#F8F9FA';
+                  e.currentTarget.style.background =
+                    '#F3F5F3';
                 }}
                 onMouseLeave={e => {
-                  e.currentTarget.style.background = '#FFFFFF';
+                  e.currentTarget.style.background =
+                    '#FFFFFF';
                 }}
               >
+
                 {/* EMAIL */}
+
                 <div
                   style={{
                     fontFamily: 'var(--sans)',
                     fontSize: '12px',
-                    color: '#0F2E23',
-                    fontWeight: 500,
+                    color: '#17231E',
+                    fontWeight: 600,
                   }}
                 >
                   {subscriber.email}
                 </div>
 
                 {/* STATUS */}
+
                 <div>
                   <span
                     style={{
@@ -414,16 +550,18 @@ export default function AdminNewsletter() {
                       fontFamily: 'var(--sans)',
                       fontSize: '9px',
                       fontWeight: 600,
-                      letterSpacing: '0.1em',
+                      letterSpacing: '0.08em',
                       textTransform: 'uppercase',
-                      padding: '4px 8px',
-                      background: subscriber.is_active
-                        ? '#E8F3EA'
-                        : '#F5E8E8',
-                      color: subscriber.is_active
-                        ? '#2E6B35'
-                        : '#A33A3A',
+                      padding: '5px 8px',
                       borderRadius: '2px',
+                      background:
+                        subscriber.is_active
+                          ? '#E7F3EC'
+                          : '#F9EAEA',
+                      color:
+                        subscriber.is_active
+                          ? '#246B45'
+                          : '#A33A3A',
                     }}
                   >
                     {subscriber.is_active
@@ -433,11 +571,12 @@ export default function AdminNewsletter() {
                 </div>
 
                 {/* DATE */}
+
                 <div
                   style={{
                     fontFamily: 'var(--sans)',
                     fontSize: '11px',
-                    color: '#7A857F',
+                    color: '#53605A',
                   }}
                 >
                   {subscriber.subscribed_at
@@ -448,6 +587,7 @@ export default function AdminNewsletter() {
                 </div>
 
                 {/* ACTIONS */}
+
                 <div
                   style={{
                     display: 'flex',
@@ -455,6 +595,9 @@ export default function AdminNewsletter() {
                     flexWrap: 'wrap',
                   }}
                 >
+
+                  {/* ENABLE / DISABLE */}
+
                   <button
                     onClick={() =>
                       handleToggle(
@@ -466,16 +609,37 @@ export default function AdminNewsletter() {
                       fontFamily: 'var(--sans)',
                       fontSize: '9px',
                       fontWeight: 600,
-                      letterSpacing: '0.08em',
+                      letterSpacing: '0.1em',
                       textTransform: 'uppercase',
                       background: 'transparent',
-                      border: '1px solid #E5E7E5',
-                      color: subscriber.is_active
-                        ? '#8A6F32'
-                        : '#2E6B35',
+                      border:
+                        '1px solid #C8A95D',
+                      color:
+                        subscriber.is_active
+                          ? '#8A6F32'
+                          : '#246B45',
                       padding: '5px 10px',
                       cursor: 'pointer',
+                      textDecoration: 'none',
                       borderRadius: '2px',
+                      transition:
+                        'all 0.2s ease',
+                    }}
+                    onMouseEnter={e => {
+                      e.currentTarget.style.background =
+                        '#C8A95D';
+
+                      e.currentTarget.style.color =
+                        '#0F2E23';
+                    }}
+                    onMouseLeave={e => {
+                      e.currentTarget.style.background =
+                        'transparent';
+
+                      e.currentTarget.style.color =
+                        subscriber.is_active
+                          ? '#8A6F32'
+                          : '#246B45';
                     }}
                   >
                     {subscriber.is_active
@@ -483,26 +647,48 @@ export default function AdminNewsletter() {
                       : 'Enable'}
                   </button>
 
+                  {/* REMOVE */}
+
                   <button
                     onClick={() =>
-                      handleDelete(subscriber.id)
+                      handleDelete(
+                        subscriber.id
+                      )
                     }
                     style={{
                       fontFamily: 'var(--sans)',
                       fontSize: '9px',
                       fontWeight: 600,
-                      letterSpacing: '0.08em',
+                      letterSpacing: '0.1em',
                       textTransform: 'uppercase',
                       background: 'transparent',
-                      border: '1px solid #E5E7E5',
+                      border:
+                        '1px solid #E5CACA',
                       color: '#A33A3A',
                       padding: '5px 10px',
                       cursor: 'pointer',
                       borderRadius: '2px',
+                      transition:
+                        'all 0.2s ease',
+                    }}
+                    onMouseEnter={e => {
+                      e.currentTarget.style.background =
+                        '#F9EAEA';
+
+                      e.currentTarget.style.borderColor =
+                        '#A33A3A';
+                    }}
+                    onMouseLeave={e => {
+                      e.currentTarget.style.background =
+                        'transparent';
+
+                      e.currentTarget.style.borderColor =
+                        '#E5CACA';
                     }}
                   >
                     Remove
                   </button>
+
                 </div>
               </div>
             ))
