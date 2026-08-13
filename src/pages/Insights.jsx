@@ -178,6 +178,34 @@ export default function Insights() {
   const [newsEmail, setNewsEmail] = useState('');
   const [newsStatus, setNewsStatus] = useState('');
   const [newsSubmitting, setNewsSubmitting] = useState(false);
+  const [dbArticles, setDbArticles] = useState([]);
+
+useEffect(() => {
+  const fetchPosts = async () => {
+    const { data } = await supabase
+      .from('blog_posts')
+      .select('*')
+      .eq('is_published', true)
+      .order('published_at', { ascending: false });
+
+    if (data && data.length > 0) {
+      const mapped = data.map(post => ({
+        date: new Date(post.published_at || post.created_at).toLocaleDateString('en-NG', { year: 'numeric', month: 'long', day: 'numeric' }),
+        category: post.category || 'General',
+        title: post.title,
+        excerpt: post.excerpt || '',
+        readTime: '5 min read',
+        featured: false,
+        image: post.featured_image || null,
+        slug: post.slug,
+        body: post.body || '',
+      }));
+      setDbArticles(mapped);
+    }
+  };
+
+  fetchPosts();
+}, []);
 
   const handleNewsSubscribe = async (e) => {
     e.preventDefault();
@@ -232,10 +260,15 @@ export default function Insights() {
     (article) => article.featured
   ).slice(0, 3);
 
-  const rest =
-    activeCategory === 'All'
-      ? ARTICLES.filter((article) => !article.featured)
-      : filtered.filter((article) => !article.featured);
+const allArticles = [...ARTICLES, ...dbArticles];
+
+const filteredAll = activeCategory === 'All'
+  ? allArticles
+  : allArticles.filter(a => a.category === activeCategory);
+
+const rest = activeCategory === 'All'
+  ? allArticles.filter(a => !a.featured)
+  : filteredAll;
 
   return (
     <main style={{ paddingTop: '6rem' }}>
