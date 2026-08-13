@@ -249,12 +249,6 @@ useEffect(() => {
     }
   };
 
-  const filtered =
-    activeCategory === 'All'
-      ? ARTICLES
-      : ARTICLES.filter(
-          (article) => article.category === activeCategory
-        );
 
   const featured = ARTICLES.filter(
     (article) => article.featured
